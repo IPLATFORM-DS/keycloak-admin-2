@@ -9,3 +9,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+server:
+  port: 3000
+springdoc:
+  swagger-ui:
+    path: /docs
