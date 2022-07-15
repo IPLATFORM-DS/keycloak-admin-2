@@ -35,7 +35,7 @@ public class Event extends BaseEntity {
     private String ipAddress;
     
     @Column(name = "event_time")
-    private long eventTime;
+    private Long eventTime;
     
     @Column(name = "type")
     private String type;
