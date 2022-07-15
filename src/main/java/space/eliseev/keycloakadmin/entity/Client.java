@@ -1,6 +1,7 @@
 package space.eliseev.keycloakadmin.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table (name = "client_entity")
 public class Client extends BaseEntity {
 
