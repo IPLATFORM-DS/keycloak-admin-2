@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import space.eliseev.keycloakadmin.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Получение информации о пользователях
@@ -24,6 +25,5 @@ import java.util.List;
  */
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
-    @Override
-    List<User> findAll();
+    Optional<User> findByUsername(String username);
 }
