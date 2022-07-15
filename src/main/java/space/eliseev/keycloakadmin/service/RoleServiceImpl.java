@@ -20,12 +20,15 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> findAll() {
         return roleRepository.findAll();
     }
+
     @Override
     public Optional<Role> findById(String id) {
         return roleRepository.findById(id);
     }
+
     @Override
     public List<Role> findByName(String name) {
         return roleRepository.findByName(name);
     }
+
 }
