@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table (name = "client_entity")
+@Table (name = "client")
 public class Client extends BaseEntity {
 
     @Column (name = "enabled")
