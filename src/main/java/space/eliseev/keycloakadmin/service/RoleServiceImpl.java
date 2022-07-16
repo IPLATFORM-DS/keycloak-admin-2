@@ -34,7 +34,7 @@ public class RoleServiceImpl implements RoleService {
      * @return роль (или пустой Optional)
      */
     @Override
-    public Optional<Role> getById(@NonNull String id) {
+    public Optional<Role> getById(@NonNull final String id) {
         return roleRepository.findById(id);
     }
 
@@ -46,7 +46,7 @@ public class RoleServiceImpl implements RoleService {
      * @return список ролей (названия роли могут совпадать в разных Realm)
      */
     @Override
-    public List<Role> getByName(@NonNull String name) {
+    public List<Role> getByName(@NonNull final String name) {
         return roleRepository.findByName(name);
     }
 }
