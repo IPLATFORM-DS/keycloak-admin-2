@@ -6,11 +6,12 @@ spring:
     username: @db-username@
     password: @db-password@
     url: @db-url@
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   jpa:
     hibernate:
       ddl-auto: validate
 server:
   port: 3000
-springdoc:
-  swagger-ui:
-    path: /docs
+
