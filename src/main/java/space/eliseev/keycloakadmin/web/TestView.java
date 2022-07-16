@@ -7,46 +7,55 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 import space.eliseev.keycloakadmin.entity.User;
-import space.eliseev.keycloakadmin.repository.UserRepository;
+import space.eliseev.keycloakadmin.service.UserService;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
 @Route
 public class TestView extends VerticalLayout {
-    private UserRepository userRepository;
-    H1 mainHeader = new H1("Тестовая страница");
-    H2 adminListHeader = new H2("Все пользователи Keycloak");
-    GetUserForm getUserForm = new GetUserForm();
-    Grid<User> grid;
+    private final UserService userService;
+    private final FormForGettingUsers formForGettingUsers = new FormForGettingUsers();
+    private final Grid<User> grid = new Grid<>(User.class);
 
-    @Autowired
-    public TestView(UserRepository userRepository){
-        this.userRepository = userRepository;
-        mainHeader.setWidth("50%");
-        getUserForm.save.addClickListener(e -> updateList());
-        getUserForm.cancel.addClickListener(e -> grid.setItems(userRepository.findAll()));
-        getUserForm.setWidth("50%");
-        this.grid = new Grid<>(User.class);
+    public TestView(@Autowired UserService userService) {
+        this.userService = userService;
+        init();
+    }
+
+    private void init() {
+        H1 mainHeader = new H1("Тестовая страница");
+        H2 adminListHeader = new H2("Все пользователи Keycloak");
+        setFormForGettingUsers();
+        setUserGrid();
+        add(mainHeader, formForGettingUsers, adminListHeader, grid);
+    }
+
+    private void setFormForGettingUsers() {
+        formForGettingUsers.save.addClickListener(e -> updateList());
+        formForGettingUsers.cancel.addClickListener(e -> grid.setItems(userService.getAllUsers()));
+        formForGettingUsers.setWidth("50%");
+    }
+
+    private void setUserGrid() {
         grid.scrollToStart();
-        grid.setItems(userRepository.findAll());
+        grid.setItems(userService.getAllUsers());
         grid.setColumns("id", "email", "username");
-        grid.getColumnByKey("id").setWidth("30%").setFlexGrow(0);
+        grid.getColumnByKey("id").setWidth("40%").setFlexGrow(0);
         grid.getColumnByKey("email").setWidth("30%").setFlexGrow(0);
         grid.getColumnByKey("username").setWidth("30%").setFlexGrow(0);
-        add(mainHeader, getUserForm, adminListHeader, grid);
     }
 
     private void updateList() {
-        Optional<User> a;
-        if (getUserForm.username.getValue() != null && !getUserForm.username.getValue().equals("")) {
-            if ((a = userRepository.findByUsername(getUserForm.username.getValue())).isPresent()) {
+        if (!formForGettingUsers.id.getValue().equals("")) {
+            Optional<User> a = userService.getById(formForGettingUsers.id.getValue());
+            if (a.isPresent()) {
                 grid.setItems(a.get());
             } else {
                 grid.setItems(new ArrayList<>());
             }
         } else {
-            grid.setItems(userRepository.findAll());
+            grid.setItems(userService.getAllUsers());
         }
     }
 }
