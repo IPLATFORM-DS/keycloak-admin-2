@@ -30,7 +30,7 @@ public class RoleController {
 
     @GetMapping(value = "/getById/{id}")
     public ResponseEntity<Role> getRoleById(@PathVariable(name = "id") String id) {
-        Optional<Role> role = roleService.getById(id);
+        final Optional<Role> role = roleService.getById(id);
         return role
                 .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(new Role(), HttpStatus.NOT_FOUND));
