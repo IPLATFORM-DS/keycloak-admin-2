@@ -12,6 +12,5 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
-server:
-  port: 3000
+
 
