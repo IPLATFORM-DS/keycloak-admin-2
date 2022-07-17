@@ -1,10 +1,6 @@
 package space.eliseev.keycloakadmin.entity;
 
 import lombok.Getter;
-<<<<<<< HEAD
-import lombok.NoArgsConstructor;
-=======
->>>>>>> master
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -37,8 +33,4 @@ public class Role extends BaseEntity {
 
     @Column(name = "realm", length = 36)
     private String realm;
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 }
