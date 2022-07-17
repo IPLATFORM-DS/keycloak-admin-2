@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event, String> {
-    List<Event> findAllByName(String username);
+    List<Event> findAllByUsername(String username);
     List<Event> findAllByTime(Long time);
-    List<Event> findAllByNameAndTime(String username, Long time);
+    List<Event> findAllByUsernameAndTime(String username, Long time);
 }

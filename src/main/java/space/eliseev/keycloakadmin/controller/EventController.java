@@ -21,6 +21,14 @@ public class EventController {
 
     @GetMapping(value = "/all")
     public ResponseEntity<List<Event>> getEvents() {
+        final List<Event> events = eventService.getAll();
+
+        if (events == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else if (events.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
         return new ResponseEntity<>(eventService.getAll(), HttpStatus.OK);
     }
 
@@ -43,10 +51,12 @@ public class EventController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        final List<Event> events = eventService.getAllByName(username);
+        final List<Event> events = eventService.getAllByUsername(username);
 
         if (events == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else if (events.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
         return new ResponseEntity<>(events, HttpStatus.OK);
@@ -62,6 +72,8 @@ public class EventController {
 
         if (events == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else if (events.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
         return new ResponseEntity<>(events, HttpStatus.OK);
@@ -73,10 +85,12 @@ public class EventController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        final List<Event> events = eventService.getAllByNameAndTime(username, time);
+        final List<Event> events = eventService.getAllByUsernameAndTime(username, time);
 
         if (events == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else if (events.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
         return new ResponseEntity<>(events, HttpStatus.OK);

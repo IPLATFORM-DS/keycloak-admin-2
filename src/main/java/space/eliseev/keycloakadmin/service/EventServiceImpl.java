@@ -24,8 +24,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> getAllByName(String username) {
-        return eventRepository.findAllByName(username);
+    public List<Event> getAllByUsername(String username) {
+        return eventRepository.findAllByUsername(username);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> getAllByNameAndTime(String username, Long time) {
-        return eventRepository.findAllByNameAndTime(username, time);
+    public List<Event> getAllByUsernameAndTime(String username, Long time) {
+        return eventRepository.findAllByUsernameAndTime(username, time);
     }
 }

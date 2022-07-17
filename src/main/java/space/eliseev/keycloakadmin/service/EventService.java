@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface EventService {
     List<Event> getAll();
     Optional<Event> getById(String id);
-    List<Event> getAllByName(String username);
+    List<Event> getAllByUsername(String username);
     List<Event> getAllByTime(Long time);
-    List<Event> getAllByNameAndTime(String username, Long time);
+    List<Event> getAllByUsernameAndTime(String username, Long time);
 }
