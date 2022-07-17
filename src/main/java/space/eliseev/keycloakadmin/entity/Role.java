@@ -33,5 +33,4 @@ public class Role extends BaseEntity {
 
     @Column(name = "realm", length = 36)
     private String realm;
-
 }
