@@ -33,7 +33,11 @@ public class RealmController {
     }
 
     @GetMapping(value = "/getByName/{name}")
-    public ResponseEntity<Optional<Realm>> getRealmByName(@PathVariable(name = "name") String name) {
-        return new ResponseEntity<>(realmService.getByName(name), HttpStatus.OK);
+    public ResponseEntity<Realm> getRealmByName(@PathVariable(name = "name") String name) {
+        final Optional<Realm> realm = realmService.getByName(name);
+        return realm
+                .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(new Realm(), HttpStatus.NOT_FOUND));
+
     }
 }
