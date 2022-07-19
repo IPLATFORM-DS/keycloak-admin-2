@@ -21,23 +21,11 @@ public class EventController {
 
     @GetMapping(value = "/all")
     public ResponseEntity<List<Event>> getEvents() {
-        final List<Event> events = eventService.getAll();
-
-        if (events == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else if (events.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-
         return new ResponseEntity<>(eventService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/get/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable String id) {
-        if (id == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
         final Optional<Event> event = eventService.getById(id);
 
         return event
@@ -47,19 +35,7 @@ public class EventController {
 
     @GetMapping(value = "/{user}/all")
     public ResponseEntity<List<Event>> getUserEvents(@PathVariable("user") String username) {
-        if (username == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        final List<Event> events = eventService.getAllByUsername(username);
-
-        if (events == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else if (events.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-
-        return new ResponseEntity<>(events, HttpStatus.OK);
+        return new ResponseEntity<>(eventService.getAllByUsername(username), HttpStatus.OK);
     }
 
     @GetMapping(value = "/all/{time}")

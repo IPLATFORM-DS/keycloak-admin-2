@@ -1,5 +1,6 @@
 package space.eliseev.keycloakadmin.service;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import space.eliseev.keycloakadmin.entity.Event;
@@ -19,22 +20,22 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Optional<Event> getById(String id) {
+    public Optional<Event> getById(@NonNull String id) {
         return eventRepository.findById(id);
     }
 
     @Override
-    public List<Event> getAllByUsername(String username) {
+    public List<Event> getAllByUsername(@NonNull String username) {
         return eventRepository.findAllByUsername(username);
     }
 
     @Override
-    public List<Event> getAllByTime(Long time) {
+    public List<Event> getAllByTime(@NonNull Long time) {
         return eventRepository.findAllByTime(time);
     }
 
     @Override
-    public List<Event> getAllByUsernameAndTime(String username, Long time) {
+    public List<Event> getAllByUsernameAndTime(@NonNull String username, @NonNull Long time) {
         return eventRepository.findAllByUsernameAndTime(username, time);
     }
 }
