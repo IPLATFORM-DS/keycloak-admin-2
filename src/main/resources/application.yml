@@ -9,9 +9,5 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
-springdoc:
-  api-docs:
-    enabled: true
-    path: /docs
-vaadin:
-  urlMapping: "/ui/*"
+  liquibase:
+    enabled: false
