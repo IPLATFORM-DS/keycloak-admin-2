@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: test_add_1_role10
+      id: test_add_2_role10
       author: Anastasiya
       changes:
         - insert:
@@ -8,13 +8,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: id_SEQ.NEXTVAL
+                  value: 1
               - column:
                   name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
-              - column:
-                  name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
+                  value: b2155089-8afb-4a64-bd88-0a43a598138d
               - column:
                   name: client_role
                   value: false
@@ -32,13 +29,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: id_SEQ.NEXTVAL
+                  value: 2
               - column:
                   name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
-              - column:
-                  name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
+                  value: b2155089-8afb-4a64-bd88-0a43a598138d
               - column:
                   name: client_role
                   value: false
@@ -56,13 +50,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: id_SEQ.NEXTVAL
+                  value: 3
               - column:
                   name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
-              - column:
-                  name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
+                  value: b2155089-8afb-4a64-bd88-0a43a598138d
               - column:
                   name: client_role
                   value: false
@@ -80,13 +71,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: id_SEQ.NEXTVAL
+                  value: 4
               - column:
                   name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
-              - column:
-                  name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
+                  value: b2155089-8afb-4a64-bd88-0a43a598138d
               - column:
                   name: client_role
                   value: false
@@ -104,13 +92,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: id_SEQ.NEXTVAL
+                  value: 5
               - column:
                   name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
-              - column:
-                  name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
+                  value: b2155089-8afb-4a64-bd88-0a43a598138d
               - column:
                   name: client_role
                   value: false
@@ -128,13 +113,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: id_SEQ.NEXTVAL
+                  value: 6
               - column:
                   name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
-              - column:
-                  name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
+                  value: b2155089-8afb-4a64-bd88-0a43a598138d
               - column:
                   name: client_role
                   value: false
@@ -152,13 +134,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: id_SEQ.NEXTVAL
+                  value: 7
               - column:
                   name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
-              - column:
-                  name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
+                  value: b2155089-8afb-4a64-bd88-0a43a598138d
               - column:
                   name: client_role
                   value: false
@@ -176,13 +155,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: id_SEQ.NEXTVAL
+                  value: 8
               - column:
                   name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
-              - column:
-                  name: client_realm_constraint
-                  value: d8bd73ab-641f-459d-af18-f3a0fded724a
+                  value: b2155089-8afb-4a64-bd88-0a43a598138d
               - column:
                   name: client_role
                   value: false
@@ -192,6 +168,48 @@ databaseChangeLog:
               - column:
                   name: name
                   value: Test8
+              - column:
+                  name: realm_id
+                  value: b2155089-8afb-4a64-bd88-0a43a598138d
+        - insert:
+            tableName: keycloak_role
+            columns:
+              - column:
+                  name: id
+                  value: 89
+              - column:
+                  name: client_realm_constraint
+                  value: b2155089-8afb-4a64-bd88-0a43a598138d
+              - column:
+                  name: client_role
+                  value: false
+              - column:
+                  name: description
+                  value: Test9
+              - column:
+                  name: name
+                  value: Test9
+              - column:
+                  name: realm_id
+                  value: b2155089-8afb-4a64-bd88-0a43a598138d
+        - insert:
+            tableName: keycloak_role
+            columns:
+              - column:
+                  name: id
+                  value: 10
+              - column:
+                  name: client_realm_constraint
+                  value: b2155089-8afb-4a64-bd88-0a43a598138d
+              - column:
+                  name: client_role
+                  value: false
+              - column:
+                  name: description
+                  value: Test10
+              - column:
+                  name: name
+                  value: Test10
               - column:
                   name: realm_id
                   value: b2155089-8afb-4a64-bd88-0a43a598138d

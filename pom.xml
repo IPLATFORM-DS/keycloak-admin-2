@@ -94,7 +94,7 @@
                     <username>Anastasiya</username>
                     <driver>org.postgresql.Driver</driver>
                     <url>jdbc:postgresql://localhost:5432/keycloak</url>
-                    <changeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</changeLogFile>
+                    <changeLogFile>src/main/resources/db/changeset/add_10_roles.yml</changeLogFile>
                     <username>postgres</username>
                     <password>postgres</password>
                     <outputChangeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</outputChangeLogFile>
@@ -117,5 +117,4 @@
             </activation>
         </profile>
     </profiles>
-
 </project>
