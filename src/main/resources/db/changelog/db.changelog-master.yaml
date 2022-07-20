@@ -1,0 +1,5140 @@
+databaseChangeLog:
+#- changeSet:
+#    id: 1658310721263-1
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_7
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: enabled
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: full_scope_allowed
+#            type: BOOLEAN
+#        - column:
+#            name: client_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: not_before
+#            type: INTEGER
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: public_client
+#            type: BOOLEAN
+#        - column:
+#            name: secret
+#            type: VARCHAR(255)
+#        - column:
+#            name: base_url
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: bearer_only
+#            type: BOOLEAN
+#        - column:
+#            name: management_url
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: surrogate_auth_required
+#            type: BOOLEAN
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: protocol
+#            type: VARCHAR(255)
+#        - column:
+#            defaultValueNumeric: 0
+#            name: node_rereg_timeout
+#            type: INTEGER
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: frontchannel_logout
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: consent_required
+#            type: BOOLEAN
+#        - column:
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: service_accounts_enabled
+#            type: BOOLEAN
+#        - column:
+#            name: client_authenticator_type
+#            type: VARCHAR(255)
+#        - column:
+#            name: root_url
+#            type: VARCHAR(255)
+#        - column:
+#            name: description
+#            type: VARCHAR(255)
+#        - column:
+#            name: registration_token
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: true
+#            name: standard_flow_enabled
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: implicit_flow_enabled
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: direct_access_grants_enabled
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: always_display_in_console
+#            type: BOOLEAN
+#        tableName: client
+#- changeSet:
+#    id: 1658310721263-2
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_a
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: client_realm_constraint
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: client_role
+#            type: BOOLEAN
+#        - column:
+#            name: description
+#            type: VARCHAR(255)
+#        - column:
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: client
+#            type: VARCHAR(36)
+#        - column:
+#            name: realm
+#            type: VARCHAR(36)
+#        tableName: keycloak_role
+#- changeSet:
+#    id: 1658310721263-3
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_4a
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: access_code_lifespan
+#            type: INTEGER
+#        - column:
+#            name: user_action_lifespan
+#            type: INTEGER
+#        - column:
+#            name: access_token_lifespan
+#            type: INTEGER
+#        - column:
+#            name: account_theme
+#            type: VARCHAR(255)
+#        - column:
+#            name: admin_theme
+#            type: VARCHAR(255)
+#        - column:
+#            name: email_theme
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: enabled
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: events_enabled
+#            type: BOOLEAN
+#        - column:
+#            name: events_expiration
+#            type: BIGINT
+#        - column:
+#            name: login_theme
+#            type: VARCHAR(255)
+#        - column:
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: not_before
+#            type: INTEGER
+#        - column:
+#            name: password_policy
+#            type: VARCHAR(2550)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: registration_allowed
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: remember_me
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: reset_password_allowed
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: social
+#            type: BOOLEAN
+#        - column:
+#            name: ssl_required
+#            type: VARCHAR(255)
+#        - column:
+#            name: sso_idle_timeout
+#            type: INTEGER
+#        - column:
+#            name: sso_max_lifespan
+#            type: INTEGER
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: update_profile_on_soc_login
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: verify_email
+#            type: BOOLEAN
+#        - column:
+#            name: master_admin_client
+#            type: VARCHAR(36)
+#        - column:
+#            name: login_lifespan
+#            type: INTEGER
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: internationalization_enabled
+#            type: BOOLEAN
+#        - column:
+#            name: default_locale
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: reg_email_as_username
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: admin_events_enabled
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: admin_events_details_enabled
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: edit_username_allowed
+#            type: BOOLEAN
+#        - column:
+#            defaultValueNumeric: 0
+#            name: otp_policy_counter
+#            type: INTEGER
+#        - column:
+#            defaultValueNumeric: 1
+#            name: otp_policy_window
+#            type: INTEGER
+#        - column:
+#            defaultValueNumeric: 30
+#            name: otp_policy_period
+#            type: INTEGER
+#        - column:
+#            defaultValueNumeric: 6
+#            name: otp_policy_digits
+#            type: INTEGER
+#        - column:
+#            defaultValue: HmacSHA1
+#            name: otp_policy_alg
+#            type: VARCHAR(36)
+#        - column:
+#            defaultValue: totp
+#            name: otp_policy_type
+#            type: VARCHAR(36)
+#        - column:
+#            name: browser_flow
+#            type: VARCHAR(36)
+#        - column:
+#            name: registration_flow
+#            type: VARCHAR(36)
+#        - column:
+#            name: direct_grant_flow
+#            type: VARCHAR(36)
+#        - column:
+#            name: reset_credentials_flow
+#            type: VARCHAR(36)
+#        - column:
+#            name: client_auth_flow
+#            type: VARCHAR(36)
+#        - column:
+#            defaultValueNumeric: 0
+#            name: offline_session_idle_timeout
+#            type: INTEGER
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: revoke_refresh_token
+#            type: BOOLEAN
+#        - column:
+#            defaultValueNumeric: 0
+#            name: access_token_life_implicit
+#            type: INTEGER
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: true
+#            name: login_with_email_allowed
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: duplicate_emails_allowed
+#            type: BOOLEAN
+#        - column:
+#            name: docker_auth_flow
+#            type: VARCHAR(36)
+#        - column:
+#            defaultValueNumeric: 0
+#            name: refresh_token_max_reuse
+#            type: INTEGER
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: allow_user_managed_access
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueNumeric: 0
+#            name: sso_max_lifespan_remember_me
+#            type: INTEGER
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueNumeric: 0
+#            name: sso_idle_timeout_remember_me
+#            type: INTEGER
+#        - column:
+#            name: default_role
+#            type: VARCHAR(255)
+#        tableName: realm
+#- changeSet:
+#    id: 1658310721263-4
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: type
+#            type: VARCHAR(255)
+#        - column:
+#            name: form_label
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: input
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: secret
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: realm_id
+#            type: VARCHAR(36)
+#        tableName: realm_required_credential
+#- changeSet:
+#    id: 1658310721263-5
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_fb
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: email
+#            type: VARCHAR(255)
+#        - column:
+#            name: email_constraint
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: email_verified
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: enabled
+#            type: BOOLEAN
+#        - column:
+#            name: federation_link
+#            type: VARCHAR(255)
+#        - column:
+#            name: first_name
+#            type: VARCHAR(255)
+#        - column:
+#            name: last_name
+#            type: VARCHAR(255)
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: username
+#            type: VARCHAR(255)
+#        - column:
+#            name: created_timestamp
+#            type: BIGINT
+#        - column:
+#            name: service_account_client_link
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueNumeric: 0
+#            name: not_before
+#            type: INTEGER
+#        tableName: user_entity
+#- changeSet:
+#    id: 1658310721263-6
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_57
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: auth_method
+#            type: VARCHAR(255)
+#        - column:
+#            name: ip_address
+#            type: VARCHAR(255)
+#        - column:
+#            name: last_session_refresh
+#            type: INTEGER
+#        - column:
+#            name: login_username
+#            type: VARCHAR(255)
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: remember_me
+#            type: BOOLEAN
+#        - column:
+#            name: started
+#            type: INTEGER
+#        - column:
+#            name: user_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: user_session_state
+#            type: INTEGER
+#        - column:
+#            name: broker_session_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: broker_user_id
+#            type: VARCHAR(255)
+#        tableName: user_session
+#- changeSet:
+#    id: 1658310721263-7
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_2b
+#            name: internal_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: enabled
+#            type: BOOLEAN
+#        - column:
+#            name: provider_alias
+#            type: VARCHAR(255)
+#        - column:
+#            name: provider_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: store_token
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: authenticate_by_default
+#            type: BOOLEAN
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: true
+#            name: add_token_role
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: trust_email
+#            type: BOOLEAN
+#        - column:
+#            name: first_broker_login_flow_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: post_broker_login_flow_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: provider_display_name
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: link_only
+#            type: BOOLEAN
+#        tableName: identity_provider
+#- changeSet:
+#    id: 1658310721263-8
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_auth_exec_pk
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: alias
+#            type: VARCHAR(255)
+#        - column:
+#            name: authenticator
+#            type: VARCHAR(36)
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: flow_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: requirement
+#            type: INTEGER
+#        - column:
+#            name: priority
+#            type: INTEGER
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: authenticator_flow
+#            type: BOOLEAN
+#        - column:
+#            name: auth_flow_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: auth_config
+#            type: VARCHAR(36)
+#        tableName: authentication_execution
+#- changeSet:
+#    id: 1658310721263-9
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: user_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValue: ' '
+#            name: required_action
+#            type: VARCHAR(255)
+#        tableName: user_required_action
+#- changeSet:
+#    id: 1658310721263-10
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_auth_flow_pk
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: alias
+#            type: VARCHAR(255)
+#        - column:
+#            name: description
+#            type: VARCHAR(255)
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValue: basic-flow
+#            name: provider_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: top_level
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: built_in
+#            type: BOOLEAN
+#        tableName: authentication_flow
+#- changeSet:
+#    id: 1658310721263-11
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: value
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: user_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_user_attribute_pk
+#            defaultValue: sybase-needs-something-here
+#            name: id
+#            type: VARCHAR(36)
+#        tableName: user_attribute
+#- changeSet:
+#    id: 1658310721263-12
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_req_act_prv_pk
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: alias
+#            type: VARCHAR(255)
+#        - column:
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: enabled
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: default_action
+#            type: BOOLEAN
+#        - column:
+#            name: provider_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: priority
+#            type: INTEGER
+#        tableName: required_action_provider
+#- changeSet:
+#    id: 1658310721263-13
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_group_attribute_pk
+#            defaultValue: sybase-needs-something-here
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: value
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: group_id
+#            type: VARCHAR(36)
+#        tableName: group_attribute
+#- changeSet:
+#    id: 1658310721263-14
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: user_session_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: client_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: offline_flag
+#            type: VARCHAR(4)
+#        - column:
+#            name: timestamp
+#            type: INTEGER
+#        - column:
+#            name: data
+#            type: TEXT
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValue: local
+#            name: client_storage_provider
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValue: local
+#            name: external_client_id
+#            type: VARCHAR(255)
+#        tableName: offline_client_session
+#- changeSet:
+#    id: 1658310721263-15
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_c
+#            name: role_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_c
+#            name: user_id
+#            type: VARCHAR(36)
+#        tableName: user_role_mapping
+#- changeSet:
+#    id: 1658310721263-16
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_user_group
+#            name: group_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_user_group
+#            name: user_id
+#            type: VARCHAR(36)
+#        tableName: user_group_membership
+#- changeSet:
+#    id: 1658310721263-17
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_grntcsnt_pm
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: client_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: user_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: created_date
+#            type: BIGINT
+#        - column:
+#            name: last_updated_date
+#            type: BIGINT
+#        - column:
+#            name: client_storage_provider
+#            type: VARCHAR(36)
+#        - column:
+#            name: external_client_id
+#            type: VARCHAR(255)
+#        tableName: user_consent
+#- changeSet:
+#    id: 1658310721263-18
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_f
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: salt
+#            type: BYTEA
+#        - column:
+#            name: type
+#            type: VARCHAR(255)
+#        - column:
+#            name: user_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: created_date
+#            type: BIGINT
+#        - column:
+#            name: user_label
+#            type: VARCHAR(255)
+#        - column:
+#            name: secret_data
+#            type: TEXT
+#        - column:
+#            name: credential_data
+#            type: TEXT
+#        - column:
+#            name: priority
+#            type: INTEGER
+#        tableName: credential
+#- changeSet:
+#    id: 1658310721263-19
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_40
+#            name: identity_provider
+#            type: VARCHAR(255)
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: federated_user_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: federated_username
+#            type: VARCHAR(255)
+#        - column:
+#            name: token
+#            type: TEXT
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_40
+#            name: user_id
+#            type: VARCHAR(36)
+#        tableName: federated_identity
+#- changeSet:
+#    id: 1658310721263-20
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: pk_resource_server
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: allow_rs_remote_mgmt
+#            type: BOOLEAN
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: policy_enforce_mode
+#            type: VARCHAR(15)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueNumeric: 1
+#            name: decision_strategy
+#            type: SMALLINT
+#        tableName: resource_server
+#- changeSet:
+#    id: 1658310721263-21
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_fed_required_action
+#            defaultValue: ' '
+#            name: required_action
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_fed_required_action
+#            name: user_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: storage_provider_id
+#            type: VARCHAR(36)
+#        tableName: fed_user_required_action
+#- changeSet:
+#    id: 1658310721263-22
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_farsrpap
+#            name: policy_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_farsrpap
+#            name: associated_policy_id
+#            type: VARCHAR(36)
+#        tableName: associated_policy
+#- changeSet:
+#    id: 1658310721263-23
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_auth_pk
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: alias
+#            type: VARCHAR(255)
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(36)
+#        tableName: authenticator_config
+#- changeSet:
+#    id: 1658310721263-24
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_8
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: client_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: redirect_uri
+#            type: VARCHAR(255)
+#        - column:
+#            name: state
+#            type: VARCHAR(255)
+#        - column:
+#            name: timestamp
+#            type: INTEGER
+#        - column:
+#            name: session_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: auth_method
+#            type: VARCHAR(255)
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: auth_user_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: current_action
+#            type: VARCHAR(36)
+#        tableName: client_session
+#- changeSet:
+#    id: 1658310721263-25
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_component_pk
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: parent_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: provider_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: provider_type
+#            type: VARCHAR(255)
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: sub_type
+#            type: VARCHAR(255)
+#        tableName: component
+#- changeSet:
+#    id: 1658310721263-26
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_component_config_pk
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: component_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: value
+#            type: VARCHAR(4000)
+#        tableName: component_config
+#- changeSet:
+#    id: 1658310721263-27
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_composite_role
+#            name: composite
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_composite_role
+#            name: child_role
+#            type: VARCHAR(36)
+#        tableName: composite_role
+#- changeSet:
+#    id: 1658310721263-28
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_group_role
+#            name: role_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_group_role
+#            name: group_id
+#            type: VARCHAR(36)
+#        tableName: group_role_mapping
+#- changeSet:
+#    id: 1658310721263-29
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_idpm
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: idp_alias
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: idp_mapper_name
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: realm_id
+#            type: VARCHAR(36)
+#        tableName: identity_provider_mapper
+#- changeSet:
+#    id: 1658310721263-30
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_pcm
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: protocol
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: protocol_mapper_name
+#            type: VARCHAR(255)
+#        - column:
+#            name: client_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: client_scope_id
+#            type: VARCHAR(36)
+#        tableName: protocol_mapper
+#- changeSet:
+#    id: 1658310721263-31
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_9
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_9
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: value
+#            type: TEXT
+#        tableName: realm_attribute
+#- changeSet:
+#    id: 1658310721263-32
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_realm_default_groups
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_realm_default_groups
+#            name: group_id
+#            type: VARCHAR(36)
+#        tableName: realm_default_groups
+#- changeSet:
+#    id: 1658310721263-33
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_realm_enabl_event_types
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_realm_enabl_event_types
+#            name: value
+#            type: VARCHAR(255)
+#        tableName: realm_enabled_event_types
+#- changeSet:
+#    id: 1658310721263-34
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_realm_events_listeners
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_realm_events_listeners
+#            name: value
+#            type: VARCHAR(255)
+#        tableName: realm_events_listeners
+#- changeSet:
+#    id: 1658310721263-35
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_realm_supported_locales
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_realm_supported_locales
+#            name: value
+#            type: VARCHAR(255)
+#        tableName: realm_supported_locales
+#- changeSet:
+#    id: 1658310721263-36
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_redirect_uris
+#            name: client_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_redirect_uris
+#            name: value
+#            type: VARCHAR(255)
+#        tableName: redirect_uris
+#- changeSet:
+#    id: 1658310721263-37
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_farsrpp
+#            name: resource_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_farsrpp
+#            name: policy_id
+#            type: VARCHAR(36)
+#        tableName: resource_policy
+#- changeSet:
+#    id: 1658310721263-38
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_farsrsp
+#            name: resource_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_farsrsp
+#            name: scope_id
+#            type: VARCHAR(36)
+#        tableName: resource_scope
+#- changeSet:
+#    id: 1658310721263-39
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_81
+#            name: client_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_81
+#            name: role_id
+#            type: VARCHAR(36)
+#        tableName: scope_mapping
+#- changeSet:
+#    id: 1658310721263-40
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_farsrsps
+#            name: scope_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_farsrsps
+#            name: policy_id
+#            type: VARCHAR(36)
+#        tableName: scope_policy
+#- changeSet:
+#    id: 1658310721263-41
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_fedmapperpm
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: federation_provider_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: federation_mapper_type
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: realm_id
+#            type: VARCHAR(36)
+#        tableName: user_federation_mapper
+#- changeSet:
+#    id: 1658310721263-42
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_5c
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: changed_sync_period
+#            type: INTEGER
+#        - column:
+#            name: display_name
+#            type: VARCHAR(255)
+#        - column:
+#            name: full_sync_period
+#            type: INTEGER
+#        - column:
+#            name: last_sync
+#            type: INTEGER
+#        - column:
+#            name: priority
+#            type: INTEGER
+#        - column:
+#            name: provider_name
+#            type: VARCHAR(255)
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(36)
+#        tableName: user_federation_provider
+#- changeSet:
+#    id: 1658310721263-43
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_web_origins
+#            name: client_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_web_origins
+#            name: value
+#            type: VARCHAR(255)
+#        tableName: web_origins
+#- changeSet:
+#    id: 1658310721263-44
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: cnstr_client_init_acc_pk
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: timestamp
+#            type: INTEGER
+#        - column:
+#            name: expiration
+#            type: INTEGER
+#        - column:
+#            name: count
+#            type: INTEGER
+#        - column:
+#            name: remaining_count
+#            type: INTEGER
+#        tableName: client_initial_access
+#- changeSet:
+#    id: 1658310721263-45
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_farsrp
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: description
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: type
+#            type: VARCHAR(255)
+#        - column:
+#            name: decision_strategy
+#            type: VARCHAR(20)
+#        - column:
+#            name: logic
+#            type: VARCHAR(20)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: resource_server_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: owner
+#            type: VARCHAR(255)
+#        tableName: resource_server_policy
+#- changeSet:
+#    id: 1658310721263-46
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_farsr
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: type
+#            type: VARCHAR(255)
+#        - column:
+#            name: icon_uri
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: owner
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: resource_server_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: owner_managed_access
+#            type: BOOLEAN
+#        - column:
+#            name: display_name
+#            type: VARCHAR(255)
+#        tableName: resource_server_resource
+#- changeSet:
+#    id: 1658310721263-47
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_farsrs
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: icon_uri
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: resource_server_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: display_name
+#            type: VARCHAR(255)
+#        tableName: resource_server_scope
+#- changeSet:
+#    id: 1658310721263-48
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_fed_user_attr_pk
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: user_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: storage_provider_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: value
+#            type: VARCHAR(2024)
+#        tableName: fed_user_attribute
+#- changeSet:
+#    id: 1658310721263-49
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_fed_user_consent_pk
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: client_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: user_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: storage_provider_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: created_date
+#            type: BIGINT
+#        - column:
+#            name: last_updated_date
+#            type: BIGINT
+#        - column:
+#            name: client_storage_provider
+#            type: VARCHAR(36)
+#        - column:
+#            name: external_client_id
+#            type: VARCHAR(255)
+#        tableName: fed_user_consent
+#- changeSet:
+#    id: 1658310721263-50
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_fed_user_cred_pk
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: salt
+#            type: BYTEA
+#        - column:
+#            name: type
+#            type: VARCHAR(255)
+#        - column:
+#            name: created_date
+#            type: BIGINT
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: user_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: storage_provider_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: user_label
+#            type: VARCHAR(255)
+#        - column:
+#            name: secret_data
+#            type: TEXT
+#        - column:
+#            name: credential_data
+#            type: TEXT
+#        - column:
+#            name: priority
+#            type: INTEGER
+#        tableName: fed_user_credential
+#- changeSet:
+#    id: 1658310721263-51
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_fed_user_group
+#            name: group_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_fed_user_group
+#            name: user_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: storage_provider_id
+#            type: VARCHAR(36)
+#        tableName: fed_user_group_membership
+#- changeSet:
+#    id: 1658310721263-52
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_fed_user_role
+#            name: role_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_fed_user_role
+#            name: user_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: storage_provider_id
+#            type: VARCHAR(36)
+#        tableName: fed_user_role_mapping
+#- changeSet:
+#    id: 1658310721263-53
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: c_cli_scope_bind
+#            name: client_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: c_cli_scope_bind
+#            name: scope_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: default_scope
+#            type: BOOLEAN
+#        tableName: client_scope_client
+#- changeSet:
+#    id: 1658310721263-54
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: r_def_cli_scope_bind
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: r_def_cli_scope_bind
+#            name: scope_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueBoolean: false
+#            name: default_scope
+#            type: BOOLEAN
+#        tableName: default_client_scope
+#- changeSet:
+#    id: 1658310721263-55
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: pk_cli_template
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: description
+#            type: VARCHAR(255)
+#        - column:
+#            name: protocol
+#            type: VARCHAR(255)
+#        tableName: client_scope
+#- changeSet:
+#    id: 1658310721263-56
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: pk_template_scope
+#            name: scope_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: pk_template_scope
+#            name: role_id
+#            type: VARCHAR(36)
+#        tableName: client_scope_role_mapping
+#- changeSet:
+#    id: 1658310721263-57
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: pk_cl_tmpl_attr
+#            name: scope_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: value
+#            type: VARCHAR(2048)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: pk_cl_tmpl_attr
+#            name: name
+#            type: VARCHAR(255)
+#        tableName: client_scope_attributes
+#- changeSet:
+#    id: 1658310721263-58
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_grntcsnt_clsc_pm
+#            name: user_consent_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_grntcsnt_clsc_pm
+#            name: scope_id
+#            type: VARCHAR(36)
+#        tableName: user_consent_client_scope
+#- changeSet:
+#    id: 1658310721263-59
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: res_attr_pk
+#            defaultValue: sybase-needs-something-here
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: value
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: resource_id
+#            type: VARCHAR(36)
+#        tableName: resource_attribute
+#- changeSet:
+#    id: 1658310721263-60
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_role_attribute_pk
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: role_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: value
+#            type: VARCHAR(255)
+#        tableName: role_attribute
+#- changeSet:
+#    id: 1658310721263-61
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_offl_us_ses_pk2
+#            name: user_session_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: user_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: created_on
+#            type: INTEGER
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_offl_us_ses_pk2
+#            name: offline_flag
+#            type: VARCHAR(4)
+#        - column:
+#            name: data
+#            type: TEXT
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueNumeric: 0
+#            name: last_session_refresh
+#            type: INTEGER
+#        tableName: offline_user_session
+#- changeSet:
+#    id: 1658310721263-62
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_migmod
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: version
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            defaultValueNumeric: 0
+#            name: update_time
+#            type: BIGINT
+#        tableName: migration_model
+#- changeSet:
+#    id: 1658310721263-63
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_4
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: client_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: details_json
+#            type: VARCHAR(2550)
+#        - column:
+#            name: error
+#            type: VARCHAR(255)
+#        - column:
+#            name: ip_address
+#            type: VARCHAR(255)
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: session_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: event_time
+#            type: BIGINT
+#        - column:
+#            name: type
+#            type: VARCHAR(255)
+#        - column:
+#            name: user_id
+#            type: VARCHAR(255)
+#        tableName: event_entity
+#- changeSet:
+#    id: 1658310721263-64
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_3c
+#            name: client_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: value
+#            type: VARCHAR(4000)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_3c
+#            name: name
+#            type: VARCHAR(255)
+#        tableName: client_attributes
+#- changeSet:
+#    id: 1658310721263-65
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_admin_event_entity
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: admin_event_time
+#            type: BIGINT
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: operation_type
+#            type: VARCHAR(255)
+#        - column:
+#            name: auth_realm_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: auth_client_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: auth_user_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: ip_address
+#            type: VARCHAR(255)
+#        - column:
+#            name: resource_path
+#            type: VARCHAR(2550)
+#        - column:
+#            name: representation
+#            type: TEXT
+#        - column:
+#            name: error
+#            type: VARCHAR(255)
+#        - column:
+#            name: resource_type
+#            type: VARCHAR(64)
+#        tableName: admin_event_entity
+#- changeSet:
+#    id: 1658310721263-66
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_group
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: parent_group
+#            type: VARCHAR(36)
+#        - column:
+#            name: realm_id
+#            type: VARCHAR(36)
+#        tableName: keycloak_group
+#- changeSet:
+#    id: 1658310721263-67
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_fapmt
+#            name: id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: owner
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: requester
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: created_timestamp
+#            type: BIGINT
+#        - column:
+#            name: granted_timestamp
+#            type: BIGINT
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: resource_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: scope_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: resource_server_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: policy_id
+#            type: VARCHAR(36)
+#        tableName: resource_server_perm_ticket
+#- changeSet:
+#    id: 1658310721263-68
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: client_id
+#        indexName: idx_client_id
+#        tableName: client
+#- changeSet:
+#    id: 1658310721263-69
+#    author: Аня (generated)
+#    changes:
+#    - addUniqueConstraint:
+#        columnNames: realm_id, client_id
+#        constraintName: uk_b71cjlbenv945rb6gcon438at
+#        tableName: client
+#- changeSet:
+#    id: 1658310721263-70
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: client
+#        indexName: idx_keycloak_role_client
+#        tableName: keycloak_role
+#- changeSet:
+#    id: 1658310721263-71
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm
+#        indexName: idx_keycloak_role_realm
+#        tableName: keycloak_role
+#- changeSet:
+#    id: 1658310721263-72
+#    author: Аня (generated)
+#    changes:
+#    - addUniqueConstraint:
+#        columnNames: name, client_realm_constraint
+#        constraintName: UK_J3RWUVD56ONTGSUHOGM184WW2-2
+#        tableName: keycloak_role
+#- changeSet:
+#    id: 1658310721263-73
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: master_admin_client
+#        indexName: idx_realm_master_adm_cli
+#        tableName: realm
+#- changeSet:
+#    id: 1658310721263-74
+#    author: Аня (generated)
+#    changes:
+#    - addUniqueConstraint:
+#        columnNames: name
+#        constraintName: uk_orvsdmla56612eaefiq6wl5oi
+#        tableName: realm
+#- changeSet:
+#    id: 1658310721263-75
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: email
+#        indexName: idx_user_email
+#        tableName: user_entity
+#- changeSet:
+#    id: 1658310721263-76
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        - column:
+#            name: service_account_client_link
+#        indexName: idx_user_service_account
+#        tableName: user_entity
+#- changeSet:
+#    id: 1658310721263-77
+#    author: Аня (generated)
+#    changes:
+#    - addUniqueConstraint:
+#        columnNames: realm_id, email_constraint
+#        constraintName: uk_dykn684sl8up1crfei6eckhd7
+#        tableName: user_entity
+#- changeSet:
+#    id: 1658310721263-78
+#    author: Аня (generated)
+#    changes:
+#    - addUniqueConstraint:
+#        columnNames: realm_id, username
+#        constraintName: uk_ru8tt6t700s9v50bu18ws5ha6
+#        tableName: user_entity
+#- changeSet:
+#    id: 1658310721263-79
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_ident_prov_realm
+#        tableName: identity_provider
+#- changeSet:
+#    id: 1658310721263-80
+#    author: Аня (generated)
+#    changes:
+#    - addUniqueConstraint:
+#        columnNames: provider_alias, realm_id
+#        constraintName: uk_2daelwnibji49avxsrtuf6xj33
+#        tableName: identity_provider
+#- changeSet:
+#    id: 1658310721263-81
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        - column:
+#            name: flow_id
+#        indexName: idx_auth_exec_realm_flow
+#        tableName: authentication_execution
+#- changeSet:
+#    id: 1658310721263-82
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: flow_id
+#        indexName: idx_auth_exec_flow
+#        tableName: authentication_execution
+#- changeSet:
+#    id: 1658310721263-83
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_id
+#        indexName: idx_user_reqactions
+#        tableName: user_required_action
+#- changeSet:
+#    id: 1658310721263-84
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_auth_flow_realm
+#        tableName: authentication_flow
+#- changeSet:
+#    id: 1658310721263-85
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_id
+#        indexName: idx_user_attribute
+#        tableName: user_attribute
+#- changeSet:
+#    id: 1658310721263-86
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: name
+#        - column:
+#            name: value
+#        indexName: idx_user_attribute_name
+#        tableName: user_attribute
+#- changeSet:
+#    id: 1658310721263-87
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_req_act_prov_realm
+#        tableName: required_action_provider
+#- changeSet:
+#    id: 1658310721263-88
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: group_id
+#        indexName: idx_group_attr_group
+#        tableName: group_attribute
+#- changeSet:
+#    id: 1658310721263-89
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_session_id
+#        indexName: idx_us_sess_id_on_cl_sess
+#        tableName: offline_client_session
+#- changeSet:
+#    id: 1658310721263-90
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: client_id
+#        - column:
+#            name: offline_flag
+#        indexName: idx_offline_css_preload
+#        tableName: offline_client_session
+#- changeSet:
+#    id: 1658310721263-91
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_id
+#        indexName: idx_user_role_mapping
+#        tableName: user_role_mapping
+#- changeSet:
+#    id: 1658310721263-92
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_id
+#        indexName: idx_user_group_mapping
+#        tableName: user_group_membership
+#- changeSet:
+#    id: 1658310721263-93
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_id
+#        indexName: idx_user_consent
+#        tableName: user_consent
+#- changeSet:
+#    id: 1658310721263-94
+#    author: Аня (generated)
+#    changes:
+#    - addUniqueConstraint:
+#        columnNames: client_id, client_storage_provider, external_client_id, user_id
+#        constraintName: uk_jkuwuvd56ontgsuhogm8uewrt
+#        tableName: user_consent
+#- changeSet:
+#    id: 1658310721263-95
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_id
+#        indexName: idx_user_credential
+#        tableName: credential
+#- changeSet:
+#    id: 1658310721263-96
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_id
+#        indexName: idx_fedidentity_user
+#        tableName: federated_identity
+#- changeSet:
+#    id: 1658310721263-97
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: federated_user_id
+#        indexName: idx_fedidentity_feduser
+#        tableName: federated_identity
+#- changeSet:
+#    id: 1658310721263-98
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_id
+#        - column:
+#            name: required_action
+#        indexName: idx_fu_required_action
+#        tableName: fed_user_required_action
+#- changeSet:
+#    id: 1658310721263-99
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        - column:
+#            name: user_id
+#        indexName: idx_fu_required_action_ru
+#        tableName: fed_user_required_action
+#- changeSet:
+#    id: 1658310721263-100
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: associated_policy_id
+#        indexName: idx_assoc_pol_assoc_pol_id
+#        tableName: associated_policy
+#- changeSet:
+#    id: 1658310721263-101
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_auth_config_realm
+#        tableName: authenticator_config
+#- changeSet:
+#    id: 1658310721263-102
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: session_id
+#        indexName: idx_client_session_session
+#        tableName: client_session
+#- changeSet:
+#    id: 1658310721263-103
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_component_realm
+#        tableName: component
+#- changeSet:
+#    id: 1658310721263-104
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: provider_type
+#        indexName: idx_component_provider_type
+#        tableName: component
+#- changeSet:
+#    id: 1658310721263-105
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: component_id
+#        indexName: idx_compo_config_compo
+#        tableName: component_config
+#- changeSet:
+#    id: 1658310721263-106
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: composite
+#        indexName: idx_composite
+#        tableName: composite_role
+#- changeSet:
+#    id: 1658310721263-107
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: child_role
+#        indexName: idx_composite_child
+#        tableName: composite_role
+#- changeSet:
+#    id: 1658310721263-108
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: group_id
+#        indexName: idx_group_role_mapp_group
+#        tableName: group_role_mapping
+#- changeSet:
+#    id: 1658310721263-109
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_id_prov_mapp_realm
+#        tableName: identity_provider_mapper
+#- changeSet:
+#    id: 1658310721263-110
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: client_id
+#        indexName: idx_protocol_mapper_client
+#        tableName: protocol_mapper
+#- changeSet:
+#    id: 1658310721263-111
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: client_scope_id
+#        indexName: idx_clscope_protmap
+#        tableName: protocol_mapper
+#- changeSet:
+#    id: 1658310721263-112
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_realm_attr_realm
+#        tableName: realm_attribute
+#- changeSet:
+#    id: 1658310721263-113
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_realm_def_grp_realm
+#        tableName: realm_default_groups
+#- changeSet:
+#    id: 1658310721263-114
+#    author: Аня (generated)
+#    changes:
+#    - addUniqueConstraint:
+#        columnNames: group_id
+#        constraintName: con_group_id_def_groups
+#        tableName: realm_default_groups
+#- changeSet:
+#    id: 1658310721263-115
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_realm_evt_types_realm
+#        tableName: realm_enabled_event_types
+#- changeSet:
+#    id: 1658310721263-116
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_realm_evt_list_realm
+#        tableName: realm_events_listeners
+#- changeSet:
+#    id: 1658310721263-117
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_realm_supp_local_realm
+#        tableName: realm_supported_locales
+#- changeSet:
+#    id: 1658310721263-118
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: client_id
+#        indexName: idx_redir_uri_client
+#        tableName: redirect_uris
+#- changeSet:
+#    id: 1658310721263-119
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: policy_id
+#        indexName: idx_res_policy_policy
+#        tableName: resource_policy
+#- changeSet:
+#    id: 1658310721263-120
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: scope_id
+#        indexName: idx_res_scope_scope
+#        tableName: resource_scope
+#- changeSet:
+#    id: 1658310721263-121
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: role_id
+#        indexName: idx_scope_mapping_role
+#        tableName: scope_mapping
+#- changeSet:
+#    id: 1658310721263-122
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: policy_id
+#        indexName: idx_scope_policy_policy
+#        tableName: scope_policy
+#- changeSet:
+#    id: 1658310721263-123
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: federation_provider_id
+#        indexName: idx_usr_fed_map_fed_prv
+#        tableName: user_federation_mapper
+#- changeSet:
+#    id: 1658310721263-124
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_usr_fed_map_realm
+#        tableName: user_federation_mapper
+#- changeSet:
+#    id: 1658310721263-125
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_usr_fed_prv_realm
+#        tableName: user_federation_provider
+#- changeSet:
+#    id: 1658310721263-126
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: client_id
+#        indexName: idx_web_orig_client
+#        tableName: web_origins
+#- changeSet:
+#    id: 1658310721263-127
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_client_init_acc_realm
+#        tableName: client_initial_access
+#- changeSet:
+#    id: 1658310721263-128
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: resource_server_id
+#        indexName: idx_res_serv_pol_res_serv
+#        tableName: resource_server_policy
+#- changeSet:
+#    id: 1658310721263-129
+#    author: Аня (generated)
+#    changes:
+#    - addUniqueConstraint:
+#        columnNames: name, resource_server_id
+#        constraintName: uk_frsrpt700s9v50bu18ws5ha6
+#        tableName: resource_server_policy
+#- changeSet:
+#    id: 1658310721263-130
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: resource_server_id
+#        indexName: idx_res_srv_res_res_srv
+#        tableName: resource_server_resource
+#- changeSet:
+#    id: 1658310721263-131
+#    author: Аня (generated)
+#    changes:
+#    - addUniqueConstraint:
+#        columnNames: name, owner, resource_server_id
+#        constraintName: uk_frsr6t700s9v50bu18ws5ha6
+#        tableName: resource_server_resource
+#- changeSet:
+#    id: 1658310721263-132
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: resource_server_id
+#        indexName: idx_res_srv_scope_res_srv
+#        tableName: resource_server_scope
+#- changeSet:
+#    id: 1658310721263-133
+#    author: Аня (generated)
+#    changes:
+#    - addUniqueConstraint:
+#        columnNames: name, resource_server_id
+#        constraintName: uk_frsrst700s9v50bu18ws5ha6
+#        tableName: resource_server_scope
+#- changeSet:
+#    id: 1658310721263-134
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_id
+#        - column:
+#            name: realm_id
+#        - column:
+#            name: name
+#        indexName: idx_fu_attribute
+#        tableName: fed_user_attribute
+#- changeSet:
+#    id: 1658310721263-135
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        - column:
+#            name: user_id
+#        indexName: idx_fu_consent_ru
+#        tableName: fed_user_consent
+#- changeSet:
+#    id: 1658310721263-136
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_id
+#        - column:
+#            name: client_storage_provider
+#        - column:
+#            name: external_client_id
+#        indexName: idx_fu_cnsnt_ext
+#        tableName: fed_user_consent
+#- changeSet:
+#    id: 1658310721263-137
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_id
+#        - column:
+#            name: client_id
+#        indexName: idx_fu_consent
+#        tableName: fed_user_consent
+#- changeSet:
+#    id: 1658310721263-138
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_id
+#        - column:
+#            name: type
+#        indexName: idx_fu_credential
+#        tableName: fed_user_credential
+#- changeSet:
+#    id: 1658310721263-139
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        - column:
+#            name: user_id
+#        indexName: idx_fu_credential_ru
+#        tableName: fed_user_credential
+#- changeSet:
+#    id: 1658310721263-140
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_id
+#        - column:
+#            name: group_id
+#        indexName: idx_fu_group_membership
+#        tableName: fed_user_group_membership
+#- changeSet:
+#    id: 1658310721263-141
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        - column:
+#            name: user_id
+#        indexName: idx_fu_group_membership_ru
+#        tableName: fed_user_group_membership
+#- changeSet:
+#    id: 1658310721263-142
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_id
+#        - column:
+#            name: role_id
+#        indexName: idx_fu_role_mapping
+#        tableName: fed_user_role_mapping
+#- changeSet:
+#    id: 1658310721263-143
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        - column:
+#            name: user_id
+#        indexName: idx_fu_role_mapping_ru
+#        tableName: fed_user_role_mapping
+#- changeSet:
+#    id: 1658310721263-144
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: client_id
+#        indexName: idx_clscope_cl
+#        tableName: client_scope_client
+#- changeSet:
+#    id: 1658310721263-145
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: scope_id
+#        indexName: idx_cl_clscope
+#        tableName: client_scope_client
+#- changeSet:
+#    id: 1658310721263-146
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_defcls_realm
+#        tableName: default_client_scope
+#- changeSet:
+#    id: 1658310721263-147
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: scope_id
+#        indexName: idx_defcls_scope
+#        tableName: default_client_scope
+#- changeSet:
+#    id: 1658310721263-148
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        indexName: idx_realm_clscope
+#        tableName: client_scope
+#- changeSet:
+#    id: 1658310721263-149
+#    author: Аня (generated)
+#    changes:
+#    - addUniqueConstraint:
+#        columnNames: realm_id, name
+#        constraintName: uk_cli_scope
+#        tableName: client_scope
+#- changeSet:
+#    id: 1658310721263-150
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: scope_id
+#        indexName: idx_clscope_role
+#        tableName: client_scope_role_mapping
+#- changeSet:
+#    id: 1658310721263-151
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: role_id
+#        indexName: idx_role_clscope
+#        tableName: client_scope_role_mapping
+#- changeSet:
+#    id: 1658310721263-152
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: scope_id
+#        indexName: idx_clscope_attrs
+#        tableName: client_scope_attributes
+#- changeSet:
+#    id: 1658310721263-153
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_consent_id
+#        indexName: idx_usconsent_clscope
+#        tableName: user_consent_client_scope
+#- changeSet:
+#    id: 1658310721263-154
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: role_id
+#        indexName: idx_role_attribute
+#        tableName: role_attribute
+#- changeSet:
+#    id: 1658310721263-155
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: created_on
+#        indexName: idx_offline_uss_createdon
+#        tableName: offline_user_session
+#- changeSet:
+#    id: 1658310721263-156
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: offline_flag
+#        - column:
+#            name: created_on
+#        - column:
+#            name: user_session_id
+#        indexName: idx_offline_uss_preload
+#        tableName: offline_user_session
+#- changeSet:
+#    id: 1658310721263-157
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: user_id
+#        - column:
+#            name: realm_id
+#        - column:
+#            name: offline_flag
+#        indexName: idx_offline_uss_by_user
+#        tableName: offline_user_session
+#- changeSet:
+#    id: 1658310721263-158
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        - column:
+#            name: offline_flag
+#        - column:
+#            name: user_session_id
+#        indexName: idx_offline_uss_by_usersess
+#        tableName: offline_user_session
+#- changeSet:
+#    id: 1658310721263-159
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            defaultValueNumeric: !!float '0'
+#            name: update_time
+#        indexName: idx_update_time
+#        tableName: migration_model
+#- changeSet:
+#    id: 1658310721263-160
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        - column:
+#            name: event_time
+#        indexName: idx_event_time
+#        tableName: event_entity
+#- changeSet:
+#    id: 1658310721263-161
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: name
+#        - column:
+#            computed: true
+#            name: ((value)::character varying(250))
+#        indexName: idx_client_att_by_name_value
+#        tableName: client_attributes
+#- changeSet:
+#    id: 1658310721263-162
+#    author: Аня (generated)
+#    changes:
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: realm_id
+#        - column:
+#            name: admin_event_time
+#        indexName: idx_admin_event_time
+#        tableName: admin_event_entity
+#- changeSet:
+#    id: 1658310721263-163
+#    author: Аня (generated)
+#    changes:
+#    - addUniqueConstraint:
+#        columnNames: realm_id, parent_group, name
+#        constraintName: sibling_names
+#        tableName: keycloak_group
+#- changeSet:
+#    id: 1658310721263-164
+#    author: Аня (generated)
+#    changes:
+#    - addUniqueConstraint:
+#        columnNames: owner, requester, resource_server_id, resource_id, scope_id
+#        constraintName: uk_frsr6t700s9v50bu18ws5pmt
+#        tableName: resource_server_perm_ticket
+#- changeSet:
+#    id: 1658310721263-165
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_auth_cfg_pk
+#            name: authenticator_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: value
+#            type: TEXT
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_auth_cfg_pk
+#            name: name
+#            type: VARCHAR(255)
+#        tableName: authenticator_config_entry
+#- changeSet:
+#    id: 1658310721263-166
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_broker_link_pk
+#            name: identity_provider
+#            type: VARCHAR(255)
+#        - column:
+#            name: storage_provider_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: broker_user_id
+#            type: VARCHAR(255)
+#        - column:
+#            name: broker_username
+#            type: VARCHAR(255)
+#        - column:
+#            name: token
+#            type: TEXT
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_broker_link_pk
+#            name: user_id
+#            type: VARCHAR(255)
+#        tableName: broker_link
+#- changeSet:
+#    id: 1658310721263-167
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: c_cli_flow_bind
+#            name: client_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: flow_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: c_cli_flow_bind
+#            name: binding_name
+#            type: VARCHAR(255)
+#        tableName: client_auth_flow_bindings
+#- changeSet:
+#    id: 1658310721263-168
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_84
+#            name: client_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: value
+#            type: INTEGER
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_84
+#            name: name
+#            type: VARCHAR(255)
+#        tableName: client_node_registrations
+#- changeSet:
+#    id: 1658310721263-169
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: authenticator
+#            type: VARCHAR(36)
+#        - column:
+#            name: status
+#            type: INTEGER
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: client_session
+#            type: VARCHAR(36)
+#        tableName: client_session_auth_status
+#- changeSet:
+#    id: 1658310721263-170
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: value
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: client_session
+#            type: VARCHAR(36)
+#        tableName: client_session_note
+#- changeSet:
+#    id: 1658310721263-171
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: protocol_mapper_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: client_session
+#            type: VARCHAR(36)
+#        tableName: client_session_prot_mapper
+#- changeSet:
+#    id: 1658310721263-172
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: role_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: client_session
+#            type: VARCHAR(36)
+#        tableName: client_session_role
+#- changeSet:
+#    id: 1658310721263-173
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: value
+#            type: VARCHAR(2048)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: client_session
+#            type: VARCHAR(36)
+#        tableName: client_user_session_note
+#- changeSet:
+#    id: 1658310721263-174
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_fgrntcsnt_clsc_pm
+#            name: user_consent_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_fgrntcsnt_clsc_pm
+#            name: scope_id
+#            type: VARCHAR(36)
+#        tableName: fed_user_consent_cl_scope
+#- changeSet:
+#    id: 1658310721263-175
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constr_federated_user
+#            name: id
+#            type: VARCHAR(255)
+#        - column:
+#            name: storage_provider_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: realm_id
+#            type: VARCHAR(36)
+#        tableName: federated_user
+#- changeSet:
+#    id: 1658310721263-176
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_d
+#            name: identity_provider_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: value
+#            type: TEXT
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_d
+#            name: name
+#            type: VARCHAR(255)
+#        tableName: identity_provider_config
+#- changeSet:
+#    id: 1658310721263-177
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_idpmconfig
+#            name: idp_mapper_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: value
+#            type: TEXT
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_idpmconfig
+#            name: name
+#            type: VARCHAR(255)
+#        tableName: idp_mapper_config
+#- changeSet:
+#    id: 1658310721263-178
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_dpc
+#            name: policy_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_dpc
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: value
+#            type: TEXT
+#        tableName: policy_config
+#- changeSet:
+#    id: 1658310721263-179
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_pmconfig
+#            name: protocol_mapper_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: value
+#            type: TEXT
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_pmconfig
+#            name: name
+#            type: VARCHAR(255)
+#        tableName: protocol_mapper_config
+#- changeSet:
+#    id: 1658310721263-180
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: realm_localizations_pkey
+#            name: realm_id
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: realm_localizations_pkey
+#            name: locale
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#            name: texts
+#            type: TEXT
+#        tableName: realm_localizations
+#- changeSet:
+#    id: 1658310721263-181
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_e
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: value
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_e
+#            name: name
+#            type: VARCHAR(255)
+#        tableName: realm_smtp_config
+#- changeSet:
+#    id: 1658310721263-182
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_req_act_cfg_pk
+#            name: required_action_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: value
+#            type: TEXT
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_req_act_cfg_pk
+#            name: name
+#            type: VARCHAR(255)
+#        tableName: required_action_config
+#- changeSet:
+#    id: 1658310721263-183
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_resour_uris_pk
+#            name: resource_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_resour_uris_pk
+#            name: value
+#            type: VARCHAR(255)
+#        tableName: resource_uris
+#- changeSet:
+#    id: 1658310721263-184
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_f9
+#            name: user_federation_provider_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: value
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_f9
+#            name: name
+#            type: VARCHAR(255)
+#        tableName: user_federation_config
+#- changeSet:
+#    id: 1658310721263-185
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_fedmapper_cfg_pm
+#            name: user_federation_mapper_id
+#            type: VARCHAR(36)
+#        - column:
+#            name: value
+#            type: VARCHAR(255)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_fedmapper_cfg_pm
+#            name: name
+#            type: VARCHAR(255)
+#        tableName: user_federation_mapper_config
+#- changeSet:
+#    id: 1658310721263-186
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_usn_pk
+#            name: user_session
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: constraint_usn_pk
+#            name: name
+#            type: VARCHAR(255)
+#        - column:
+#            name: value
+#            type: VARCHAR(2048)
+#        tableName: user_session_note
+#- changeSet:
+#    id: 1658310721263-187
+#    author: Аня (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: CONSTRAINT_17-2
+#            name: realm_id
+#            type: VARCHAR(36)
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#              primaryKeyName: CONSTRAINT_17-2
+#            name: username
+#            type: VARCHAR(255)
+#        - column:
+#            name: failed_login_not_before
+#            type: INTEGER
+#        - column:
+#            name: last_failure
+#            type: BIGINT
+#        - column:
+#            name: last_ip_failure
+#            type: VARCHAR(255)
+#        - column:
+#            name: num_failures
+#            type: INTEGER
+#        tableName: username_login_failure
+#- changeSet:
+#    id: 1658310721263-188
+#    author: Аня (generated)
+#    changes:
+#    - addPrimaryKey:
+#        columnNames: client_session, name
+#        constraintName: constr_cl_usr_ses_note
+#        tableName: client_user_session_note
+#- changeSet:
+#    id: 1658310721263-189
+#    author: Аня (generated)
+#    changes:
+#    - addPrimaryKey:
+#        columnNames: client_session, role_id
+#        constraintName: constraint_5
+#        tableName: client_session_role
+#- changeSet:
+#    id: 1658310721263-190
+#    author: Аня (generated)
+#    changes:
+#    - addPrimaryKey:
+#        columnNames: client_session, name
+#        constraintName: constraint_5e
+#        tableName: client_session_note
+#- changeSet:
+#    id: 1658310721263-191
+#    author: Аня (generated)
+#    changes:
+#    - addPrimaryKey:
+#        columnNames: realm_id, type
+#        constraintName: constraint_92
+#        tableName: realm_required_credential
+#- changeSet:
+#    id: 1658310721263-192
+#    author: Аня (generated)
+#    changes:
+#    - addPrimaryKey:
+#        columnNames: client_session, authenticator
+#        constraintName: constraint_auth_status_pk
+#        tableName: client_session_auth_status
+#- changeSet:
+#    id: 1658310721263-193
+#    author: Аня (generated)
+#    changes:
+#    - addPrimaryKey:
+#        columnNames: client_session, protocol_mapper_id
+#        constraintName: constraint_cs_pmp_pk
+#        tableName: client_session_prot_mapper
+#- changeSet:
+#    id: 1658310721263-194
+#    author: Аня (generated)
+#    changes:
+#    - addPrimaryKey:
+#        columnNames: user_session_id, client_id, client_storage_provider, external_client_id,
+#          offline_flag
+#        constraintName: constraint_offl_cl_ses_pk3
+#        tableName: offline_client_session
+#- changeSet:
+#    id: 1658310721263-195
+#    author: Аня (generated)
+#    changes:
+#    - addPrimaryKey:
+#        columnNames: required_action, user_id
+#        constraintName: constraint_required_action
+#        tableName: user_required_action
+#- changeSet:
+#    id: 1658310721263-196
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: client_session
+#        baseTableName: client_session_auth_status
+#        constraintName: auth_status_constraint
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: client_session
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-197
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: identity_provider
+#        constraintName: fk2b4ebc52ae5c3b34
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-198
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: client_id
+#        baseTableName: client_attributes
+#        constraintName: fk3c47c64beacca966
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: client
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-199
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: user_id
+#        baseTableName: federated_identity
+#        constraintName: fk404288b92ef007a6
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: user_entity
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-200
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: client_id
+#        baseTableName: client_node_registrations
+#        constraintName: fk4129723ba992f594
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: client
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-201
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: client_session
+#        baseTableName: client_session_note
+#        constraintName: fk5edfb00ff51c2736
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: client_session
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-202
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: user_session
+#        baseTableName: user_session_note
+#        constraintName: fk5edfb00ff51d3472
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: user_session
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-203
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: client_session
+#        baseTableName: client_session_role
+#        constraintName: fk_11b7sgqw18i532811v7o2dv76
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: client_session
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-204
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: client_id
+#        baseTableName: redirect_uris
+#        constraintName: fk_1burs8pb4ouj97h5wuppahv9f
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: client
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-205
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: user_federation_provider
+#        constraintName: fk_1fj32f6ptolw2qy60cd8n01e8
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-206
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: client_session
+#        baseTableName: client_session_prot_mapper
+#        constraintName: fk_33a8sgqw18i532811v7o2dk89
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: client_session
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-207
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: realm_required_credential
+#        constraintName: fk_5hg65lybevavkqfki3kponh9v
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-208
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: resource_id
+#        baseTableName: resource_attribute
+#        constraintName: fk_5hrm2vlf9ql5fu022kqepovbr
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server_resource
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-209
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: user_id
+#        baseTableName: user_attribute
+#        constraintName: fk_5hrm2vlf9ql5fu043kqepovbr
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: user_entity
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-210
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: user_id
+#        baseTableName: user_required_action
+#        constraintName: fk_6qj3w1jw9cvafhe19bwsiuvmd
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: user_entity
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-211
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm
+#        baseTableName: keycloak_role
+#        constraintName: fk_6vyqfe4cn4wlq8r6kt5vdsj5c
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-212
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: realm_smtp_config
+#        constraintName: fk_70ej8xdxgxd0b9hh6180irr0o
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-213
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: realm_attribute
+#        constraintName: fk_8shxd6l3e9atqukacxgpffptw
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-214
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: composite
+#        baseTableName: composite_role
+#        constraintName: fk_a63wvekftu8jo1pnj81e7mce2
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: keycloak_role
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-215
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: flow_id
+#        baseTableName: authentication_execution
+#        constraintName: fk_auth_exec_flow
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: authentication_flow
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-216
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: authentication_execution
+#        constraintName: fk_auth_exec_realm
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-217
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: authentication_flow
+#        constraintName: fk_auth_flow_realm
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-218
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: authenticator_config
+#        constraintName: fk_auth_realm
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-219
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: session_id
+#        baseTableName: client_session
+#        constraintName: fk_b4ao2vcvat6ukau74wbwtfqo1
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: user_session
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-220
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: user_id
+#        baseTableName: user_role_mapping
+#        constraintName: fk_c4fqv34p1mbylloxang7b1q3l
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: user_entity
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-221
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: scope_id
+#        baseTableName: client_scope_attributes
+#        constraintName: fk_cl_scope_attr_scope
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: client_scope
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-222
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: scope_id
+#        baseTableName: client_scope_role_mapping
+#        constraintName: fk_cl_scope_rm_scope
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: client_scope
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-223
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: client_session
+#        baseTableName: client_user_session_note
+#        constraintName: fk_cl_usr_ses_note
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: client_session
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-224
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: client_scope_id
+#        baseTableName: protocol_mapper
+#        constraintName: fk_cli_scope_mapper
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: client_scope
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-225
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: client_initial_access
+#        constraintName: fk_client_init_acc_realm
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-226
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: component_id
+#        baseTableName: component_config
+#        constraintName: fk_component_config
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: component
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-227
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: component
+#        constraintName: fk_component_realm
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-228
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: realm_default_groups
+#        constraintName: fk_def_groups_realm
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-229
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: user_federation_mapper_id
+#        baseTableName: user_federation_mapper_config
+#        constraintName: fk_fedmapper_cfg
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: user_federation_mapper
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-230
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: federation_provider_id
+#        baseTableName: user_federation_mapper
+#        constraintName: fk_fedmapperpm_fedprv
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: user_federation_provider
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-231
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: user_federation_mapper
+#        constraintName: fk_fedmapperpm_realm
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-232
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: associated_policy_id
+#        baseTableName: associated_policy
+#        constraintName: fk_frsr5s213xcx4wnkog82ssrfy
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server_policy
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-233
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: policy_id
+#        baseTableName: scope_policy
+#        constraintName: fk_frsrasp13xcx4wnkog82ssrfy
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server_policy
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-234
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: resource_server_id
+#        baseTableName: resource_server_perm_ticket
+#        constraintName: fk_frsrho213xcx4wnkog82sspmt
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-235
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: resource_server_id
+#        baseTableName: resource_server_resource
+#        constraintName: fk_frsrho213xcx4wnkog82ssrfy
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-236
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: resource_id
+#        baseTableName: resource_server_perm_ticket
+#        constraintName: fk_frsrho213xcx4wnkog83sspmt
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server_resource
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-237
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: scope_id
+#        baseTableName: resource_server_perm_ticket
+#        constraintName: fk_frsrho213xcx4wnkog84sspmt
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server_scope
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-238
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: policy_id
+#        baseTableName: associated_policy
+#        constraintName: fk_frsrpas14xcx4wnkog82ssrfy
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server_policy
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-239
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: scope_id
+#        baseTableName: scope_policy
+#        constraintName: fk_frsrpass3xcx4wnkog82ssrfy
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server_scope
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-240
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: policy_id
+#        baseTableName: resource_server_perm_ticket
+#        constraintName: fk_frsrpo2128cx4wnkog82ssrfy
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server_policy
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-241
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: resource_server_id
+#        baseTableName: resource_server_policy
+#        constraintName: fk_frsrpo213xcx4wnkog82ssrfy
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-242
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: resource_id
+#        baseTableName: resource_scope
+#        constraintName: fk_frsrpos13xcx4wnkog82ssrfy
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server_resource
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-243
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: resource_id
+#        baseTableName: resource_policy
+#        constraintName: fk_frsrpos53xcx4wnkog82ssrfy
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server_resource
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-244
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: policy_id
+#        baseTableName: resource_policy
+#        constraintName: fk_frsrpp213xcx4wnkog82ssrfy
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server_policy
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-245
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: scope_id
+#        baseTableName: resource_scope
+#        constraintName: fk_frsrps213xcx4wnkog82ssrfy
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server_scope
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-246
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: resource_server_id
+#        baseTableName: resource_server_scope
+#        constraintName: fk_frsrso213xcx4wnkog82ssrfy
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-247
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: child_role
+#        baseTableName: composite_role
+#        constraintName: fk_gr7thllb9lu8q4vqa4524jjy8
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: keycloak_role
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-248
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: user_consent_id
+#        baseTableName: user_consent_client_scope
+#        constraintName: fk_grntcsnt_clsc_usc
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: user_consent
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-249
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: user_id
+#        baseTableName: user_consent
+#        constraintName: fk_grntcsnt_user
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: user_entity
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-250
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: group_id
+#        baseTableName: group_attribute
+#        constraintName: fk_group_attribute_group
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: keycloak_group
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-251
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: group_id
+#        baseTableName: group_role_mapping
+#        constraintName: fk_group_role_group
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: keycloak_group
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-252
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: realm_enabled_event_types
+#        constraintName: fk_h846o4h0w8epx5nwedrf5y69j
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-253
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: realm_events_listeners
+#        constraintName: fk_h846o4h0w8epx5nxev9f5y69j
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-254
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: identity_provider_mapper
+#        constraintName: fk_idpm_realm
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-255
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: idp_mapper_id
+#        baseTableName: idp_mapper_config
+#        constraintName: fk_idpmconfig
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: identity_provider_mapper
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-256
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: client_id
+#        baseTableName: web_origins
+#        constraintName: fk_lojpho213xcx4wnkog82ssrfy
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: client
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-257
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: client_id
+#        baseTableName: scope_mapping
+#        constraintName: fk_ouse064plmlr732lxjcn1q5f1
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: client
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-258
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: client_id
+#        baseTableName: protocol_mapper
+#        constraintName: fk_pcm_realm
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: client
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-259
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: user_id
+#        baseTableName: credential
+#        constraintName: fk_pfyr0glasqyl0dei3kl69r6v0
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: user_entity
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-260
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: protocol_mapper_id
+#        baseTableName: protocol_mapper_config
+#        constraintName: fk_pmconfig
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: protocol_mapper
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-261
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: default_client_scope
+#        constraintName: fk_r_def_cli_scope_realm
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-262
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: required_action_provider
+#        constraintName: fk_req_act_realm
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-263
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: resource_id
+#        baseTableName: resource_uris
+#        constraintName: fk_resource_server_uris
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server_resource
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-264
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: role_id
+#        baseTableName: role_attribute
+#        constraintName: fk_role_attribute_id
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: keycloak_role
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-265
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: realm_id
+#        baseTableName: realm_supported_locales
+#        constraintName: fk_supported_locales_realm
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: realm
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-266
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: user_federation_provider_id
+#        baseTableName: user_federation_config
+#        constraintName: fk_t13hpu1j94r2ebpekr39x5eu5
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: user_federation_provider
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-267
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: user_id
+#        baseTableName: user_group_membership
+#        constraintName: fk_user_group_user
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: user_entity
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-268
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: policy_id
+#        baseTableName: policy_config
+#        constraintName: fkdc34197cf864c4e43
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: id
+#        referencedTableName: resource_server_policy
+#        validate: true
+#- changeSet:
+#    id: 1658310721263-269
+#    author: Аня (generated)
+#    changes:
+#    - addForeignKeyConstraint:
+#        baseColumnNames: identity_provider_id
+#        baseTableName: identity_provider_config
+#        constraintName: fkdc4897cf864c4e43
+#        deferrable: false
+#        initiallyDeferred: false
+#        onDelete: NO ACTION
+#        onUpdate: NO ACTION
+#        referencedColumnNames: internal_id
+#        referencedTableName: identity_provider
+#        validate: true
+- changeSet:
+      id: test_add_1_role10
+      author: Anastasiya
+      changes:
+      - insert:
+          tableName: keycloak_role
+          columns:
+          - column:
+                name: id
+                value: id_SEQ.NEXTVAL
+          - column:
+                name: client_realm_constraint
+                value: d8bd73ab-641f-459d-af18-f3a0fded724a
+          - column:
+              name: client_realm_constraint
+              value: d8bd73ab-641f-459d-af18-f3a0fded724a
+          - column:
+              name: client_role
+              value: false
+          - column:
+              name: description
+              value: Test1
+          - column:
+              name: name
+              value: Test1
+          - column:
+              name: realm_id
+              value: b2155089-8afb-4a64-bd88-0a43a598138d
