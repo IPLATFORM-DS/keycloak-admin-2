@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: test_add_2_role10
+      id: test_add_role10
       author: Anastasiya
       changes:
         - insert:
@@ -176,7 +176,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: 89
+                  value: 9
               - column:
                   name: client_realm_constraint
                   value: b2155089-8afb-4a64-bd88-0a43a598138d
