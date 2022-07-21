@@ -11,3 +11,9 @@ spring:
       ddl-auto: validate
   liquibase:
     enabled: false
+springdoc:
+  api-docs:
+    enabled: true
+    path: /docs
+vaadin:
+  urlMapping: "/ui/*"
