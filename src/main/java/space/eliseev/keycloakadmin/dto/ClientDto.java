@@ -1,20 +1,20 @@
 package space.eliseev.keycloakadmin.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class ClientDto {
 
     private Boolean enabled;
 
-    private String clientName;
+    // Т.к в классе уже есть поле name, поэтому решил не менять его название на clientName
+    private String clientId;
 
     private Boolean publicClient;
 
     private String secret;
 
+    // Соответствует текстовому полю realm_id в таблице client
     private String realmName;
 
     private String protocol;
