@@ -125,8 +125,24 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <configuration>
+                    <username>Anastasiya</username>
+                    <driver>org.postgresql.Driver</driver>
+                    <url>jdbc:postgresql://localhost:5432/keycloak</url>
+                    <changeLogFile>src/main/resources/db/changeset/add_10_roles.yml</changeLogFile>
+                    <username>postgres</username>
+                    <password>postgres</password>
+                    <outputChangeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</outputChangeLogFile>
+                    <goal>generateChangeLog</goal>
+                    <goal>update</goal>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
     <profiles>
         <profile>
             <id>dev</id>
@@ -140,4 +156,5 @@
             </activation>
         </profile>
     </profiles>
+
 </project>
