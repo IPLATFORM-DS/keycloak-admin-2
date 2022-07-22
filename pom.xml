@@ -134,6 +134,7 @@
                     <url>jdbc:postgresql://localhost:5432/keycloak</url>
                     <changeLogFile>src/main/resources/db/changeset/add_10_roles.yml</changeLogFile>
                     <changeLogFile>src/main/resources/db/changeset/add_10_realms.yml</changeLogFile>
+                    <changeLogFile>src/main/resources/db/changeset/add_10_clients.yml</changeLogFile>
                     <username>postgres</username>
                     <password>postgres</password>
                     <outputChangeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</outputChangeLogFile>
