@@ -1,19 +1,18 @@
-package space.eliseev.keycloakadmin.test;
+package space.eliseev.keycloakadmin.commons;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import space.eliseev.keycloakadmin.commons.TimeUtils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Locale;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TimeUtilsTest {
-    static LocalDateTime localDateTime;
     public static final Long LONG_TIME = 1658137290000L;
+    static LocalDateTime localDateTime;
 
     @BeforeClass
     public static void beforeClass() {
@@ -33,6 +32,6 @@ public class TimeUtilsTest {
     @Test
     public void toLong() {
         Long time = TimeUtils.toLong(localDateTime);
-        assertEquals(time, LONG_TIME);
+        assertEquals(LONG_TIME, time);
     }
 }

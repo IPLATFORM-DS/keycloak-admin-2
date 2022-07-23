@@ -3,7 +3,7 @@ package space.eliseev.keycloakadmin.dto;
 import lombok.Data;
 
 @Data
-public class RoleDTO {
+public class RoleDto {
     private String name;
     private Boolean clientRole;
     private String description;
