@@ -4,7 +4,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import space.eliseev.keycloakadmin.dto.ClientDto;
-import space.eliseev.keycloakadmin.dto.ClientMapper;
+import space.eliseev.keycloakadmin.mapper.ClientMapper;
 import space.eliseev.keycloakadmin.repository.ClientRepository;
 
 import java.util.List;

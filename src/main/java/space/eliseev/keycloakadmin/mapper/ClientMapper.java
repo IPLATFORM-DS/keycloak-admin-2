@@ -1,7 +1,8 @@
-package space.eliseev.keycloakadmin.dto;
+package space.eliseev.keycloakadmin.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import space.eliseev.keycloakadmin.dto.ClientDto;
 import space.eliseev.keycloakadmin.entity.Client;
 
 @Mapper
