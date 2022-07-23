@@ -30,10 +30,10 @@ public class Realm extends BaseEntity {
     private String emailTheme;
 
     @Column(name = "enabled", nullable = false)
-    private boolean enabled;
+    private Boolean enabled;
 
     @Column(name = "events_enabled", nullable = false)
-    private boolean eventsEnabled;
+    private Boolean eventsEnabled;
 
     @Column(name = "events_expiration")
     private Long eventsExpiration;
@@ -51,16 +51,16 @@ public class Realm extends BaseEntity {
     private String passwordPolicy;
 
     @Column(name = "registration_allowed", nullable = false)
-    private boolean registrationAllowed;
+    private Boolean registrationAllowed;
 
     @Column(name = "remember_me", nullable = false)
-    private boolean rememberMe;
+    private Boolean rememberMe;
 
     @Column(name = "reset_password_allowed", nullable = false)
-    private boolean resetPasswordAllowed;
+    private Boolean resetPasswordAllowed;
 
     @Column(name = "social", nullable = false)
-    private boolean social;
+    private Boolean social;
 
     @Column(name = "ssl_required")
     private String sslRequired;
@@ -72,10 +72,10 @@ public class Realm extends BaseEntity {
     private Integer ssoMaxLifespan;
 
     @Column(name = "update_profile_on_soc_login", nullable = false)
-    private boolean updateProfileOnSocLogin;
+    private Boolean updateProfileOnSocLogin;
 
     @Column(name = "verify_email", nullable = false)
-    private boolean verifyEmail;
+    private Boolean verifyEmail;
 
     @Column(name = "master_admin_client", length = 36)
     private String masterAdminClient;
@@ -84,22 +84,22 @@ public class Realm extends BaseEntity {
     private Integer loginLifespan;
 
     @Column(name = "internationalization_enabled", nullable = false)
-    private boolean internationalizationEnabled;
+    private Boolean internationalizationEnabled;
 
     @Column(name = "default_locale")
     private String defaultLocale;
 
     @Column(name = "reg_email_as_username", nullable = false)
-    private boolean regEmailAsUsername;
+    private Boolean regEmailAsUsername;
 
     @Column(name = "admin_events_enabled", nullable = false)
-    private boolean adminEventsEnabled;
+    private Boolean adminEventsEnabled;
 
     @Column(name = "admin_events_details_enabled", nullable = false)
-    private boolean adminEventsDetailsEnabled;
+    private Boolean adminEventsDetailsEnabled;
 
     @Column(name = "edit_username_allowed", nullable = false)
-    private boolean editUsernameAllowed;
+    private Boolean editUsernameAllowed;
 
     @Column(name = "otp_policy_counter")
     private Integer otpPolicyCounter;
@@ -138,16 +138,16 @@ public class Realm extends BaseEntity {
     private Integer offlineSessionIdleTimeout;
 
     @Column(name = "revoke_refresh_token", nullable = false)
-    private boolean revokeRefreshToken;
+    private Boolean revokeRefreshToken;
 
     @Column(name = "access_token_life_implicit")
     private Integer accessTokenLifeImplicit;
 
     @Column(name = "login_with_email_allowed")
-    private boolean loginWithEmailAllowed;
+    private Boolean loginWithEmailAllowed;
 
     @Column(name = "duplicate_emails_allowed", nullable = false)
-    private boolean duplicateEmailsAllowed;
+    private Boolean duplicateEmailsAllowed;
 
     @Column(name = "docker_auth_flow", length = 36)
     private String dockerAuthFlow;
@@ -156,7 +156,7 @@ public class Realm extends BaseEntity {
     private Integer refreshTokenMaxReuse;
 
     @Column(name = "allow_user_managed_access", nullable = false)
-    private boolean allowUserManagedAccess;
+    private Boolean allowUserManagedAccess;
 
     @Column(name = "sso_max_lifespan_remember_me")
     private Integer ssoMaxLifespanRememberMe;
