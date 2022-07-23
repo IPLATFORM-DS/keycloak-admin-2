@@ -12,9 +12,9 @@ public class RealmDto {
 
     private Integer accessTokenLifespan;
 
-    private boolean enabled;
+    private Boolean enabled;
 
-    private boolean eventsEnabled;
+    private Boolean eventsEnabled;
 
     private Long eventsExpiration;
 
@@ -22,13 +22,13 @@ public class RealmDto {
 
     private Integer notBefore;
 
-    private boolean registrationAllowed;
+    private Boolean registrationAllowed;
 
-    private boolean rememberMe;
+    private Boolean rememberMe;
 
-    private boolean resetPasswordAllowed;
+    private Boolean resetPasswordAllowed;
 
-    private boolean social;
+    private Boolean social;
 
     private String sslRequired;
 
@@ -36,21 +36,21 @@ public class RealmDto {
 
     private Integer ssoMaxLifespan;
 
-    private boolean updateProfileOnSocLogin;
+    private Boolean updateProfileOnSocLogin;
 
-    private boolean verifyEmail;
+    private Boolean verifyEmail;
 
     private Integer loginLifespan;
 
-    private boolean internationalizationEnabled;
+    private Boolean internationalizationEnabled;
 
-    private boolean regEmailAsUsername;
+    private Boolean regEmailAsUsername;
 
-    private boolean adminEventsEnabled;
+    private Boolean adminEventsEnabled;
 
-    private boolean adminEventsDetailsEnabled;
+    private Boolean adminEventsDetailsEnabled;
 
-    private boolean editUsernameAllowed;
+    private Boolean editUsernameAllowed;
 
     private Integer otpPolicyCounter;
 
@@ -62,17 +62,17 @@ public class RealmDto {
 
     private Integer offlineSessionIdleTimeout;
 
-    private boolean revokeRefreshToken;
+    private Boolean revokeRefreshToken;
 
     private Integer accessTokenLifeImplicit;
 
-    private boolean loginWithEmailAllowed;
+    private Boolean loginWithEmailAllowed;
 
-    private boolean duplicateEmailsAllowed;
+    private Boolean duplicateEmailsAllowed;
 
     private Integer refreshTokenMaxReuse;
 
-    private boolean allowUserManagedAccess;
+    private Boolean allowUserManagedAccess;
 
     private Integer ssoMaxLifespanRememberMe;
 
