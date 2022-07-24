@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import space.eliseev.keycloakadmin.dto.RoleDto;
 import space.eliseev.keycloakadmin.entity.Role;
 import space.eliseev.keycloakadmin.service.RoleService;
 
@@ -39,7 +40,7 @@ public class RoleController {
                     description = "successful operation (may be empty list)")
     })
     @GetMapping(value = "/getAll", produces = {"application/json"})
-    public ResponseEntity<List<Role>> getAllRolesList() {
+    public ResponseEntity<List<RoleDto>> getAllRolesList() {
         return new ResponseEntity<>(roleService.getAllRoles(), HttpStatus.OK);
     }
 
@@ -50,12 +51,12 @@ public class RoleController {
             @ApiResponse(responseCode = "404", description = "role not found", content = @Content)
     })
     @GetMapping(value = "/getById/{id}", produces = {"application/json"})
-    public ResponseEntity<Role> getRoleById(@Parameter(required = true, description = "ID of requested role")
-                                            @PathVariable(name = "id") String id) {
-        final Optional<Role> role = roleService.getById(id);
+    public ResponseEntity<RoleDto> getRoleById(@Parameter(required = true, description = "ID of requested role")
+                                               @PathVariable(name = "id") String id) {
+        final Optional<RoleDto> role = roleService.getById(id);
         return role
                 .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(new Role(), HttpStatus.NOT_FOUND));
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @Operation(summary = "Get role by name", description = "It returns list of roles with specified name in all realms",
@@ -66,9 +67,9 @@ public class RoleController {
                     description = "successful operation (may be empty list)")
     })
     @GetMapping(value = "/getByName/{name}", produces = {"application/json"})
-    public ResponseEntity<List<Role>> getRoleByName(@Parameter(required = true,
+    public ResponseEntity<List<RoleDto>> getRoleByName(@Parameter(required = true,
             description = "Name of requested role (or roles, if they exists in different realms)")
-                                                    @PathVariable(name = "name") String name) {
+                                                       @PathVariable(name = "name") String name) {
         return new ResponseEntity<>(roleService.getByName(name), HttpStatus.OK);
     }
 }

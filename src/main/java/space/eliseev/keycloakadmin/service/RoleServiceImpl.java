@@ -3,11 +3,17 @@ package space.eliseev.keycloakadmin.service;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import space.eliseev.keycloakadmin.dto.ClientDto;
+import space.eliseev.keycloakadmin.dto.RoleDto;
+import space.eliseev.keycloakadmin.entity.Client;
+import space.eliseev.keycloakadmin.entity.Realm;
 import space.eliseev.keycloakadmin.entity.Role;
+import space.eliseev.keycloakadmin.mapper.RoleMapper;
 import space.eliseev.keycloakadmin.repository.RoleRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Реализация {@link RoleService}
@@ -16,6 +22,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepository;
+    private final RoleMapper roleMapper;
+    private final ClientService clientService;
+    private final RealmService realmService;
 
     /**
      * Получить список всех ролей
@@ -23,8 +32,19 @@ public class RoleServiceImpl implements RoleService {
      * @return список всех ролей
      */
     @Override
-    public List<Role> getAllRoles() {
-        return roleRepository.findAll();
+    public List<RoleDto> getAllRoles() {
+        return roleRepository.findAll()
+                .stream()
+                .map(role -> {
+            Optional<ClientDto> client = clientService.getById(role.getClientId());
+            Optional<Realm> realm = realmService.getById(role.getRealmId());
+            String clientName = client.map(Client::getName).orElse(null);
+            String realmName = realm.map(Realm::getName).orElse(null);
+            RoleDto dto = roleMapper.roleToRoleDto(role);
+            dto.setRealmName(realmName);
+            return dto;
+        })
+                .collect(Collectors.toList());
     }
 
     /**
@@ -34,8 +54,10 @@ public class RoleServiceImpl implements RoleService {
      * @return роль (или пустой Optional)
      */
     @Override
-    public Optional<Role> getById(@NonNull final String id) {
-        return roleRepository.findById(id);
+    public Optional<RoleDto> getById(@NonNull final String id) {
+
+        return Optional.ofNullable(roleMapper.roleToRoleDto(roleRepository.findById(id)
+                .orElse(null)));
     }
 
     /**
@@ -46,7 +68,10 @@ public class RoleServiceImpl implements RoleService {
      * @return список ролей (названия роли могут совпадать в разных Realm)
      */
     @Override
-    public List<Role> getByName(@NonNull final String name) {
-        return roleRepository.findByName(name);
+    public List<RoleDto> getByName(@NonNull final String name) {
+        return roleRepository.findByName(name)
+                .stream()
+                .map(roleMapper::roleToRoleDto)
+                .collect(Collectors.toList());
     }
 }
