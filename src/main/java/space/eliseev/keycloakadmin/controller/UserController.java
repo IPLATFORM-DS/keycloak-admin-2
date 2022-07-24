@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import space.eliseev.keycloakadmin.entity.User;
+import space.eliseev.keycloakadmin.dto.UserDto;
 import space.eliseev.keycloakadmin.service.UserService;
 
 import java.util.List;
@@ -48,11 +48,11 @@ public class UserController {
             tags = {"user"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json",
-                    array = @ArraySchema(schema = @Schema(implementation = User.class))),
+                    array = @ArraySchema(schema = @Schema(implementation = UserDto.class))),
                     description = "Successful operation (List may be empty)")
     })
     @GetMapping(value = "/getAll")
-    public ResponseEntity<List<User>> getUsers() {
+    public ResponseEntity<List<UserDto>> getUsers() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
@@ -60,14 +60,14 @@ public class UserController {
             tags = {"user"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json",
-                    array = @ArraySchema(schema = @Schema(implementation = User.class))),
+                    array = @ArraySchema(schema = @Schema(implementation = UserDto.class))),
                     description = "Successful operation (List may be empty)"),
             @ApiResponse(responseCode = "404", content = @Content, description = "User not found")
     })
     @GetMapping("/get/{id}")
-    public ResponseEntity<User> getById(@Parameter(required = true, description = "ID of requested user")
-                                        @PathVariable String id) {
-        final Optional<User> user = userService.getById(id);
+    public ResponseEntity<UserDto> getById(@Parameter(required = true, description = "ID of requested user")
+                                           @PathVariable String id) {
+        final Optional<UserDto> user = userService.getById(id);
         return user
                 .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
