@@ -13,8 +13,7 @@ import java.util.List;
 public class UserFormBuilderCsv implements UserFormBuilder{
     private final UserServiceImpl userService;
     @Override
-    public byte[] download(List<UserDto> list)  {
-        List<User> dtos = userService.getAllUsers();
+    public byte[] download(List<User> dtos)  {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("email").append(";").append("emailVerified").append(";").append("username\r\n");
         for (User dto : dtos) {

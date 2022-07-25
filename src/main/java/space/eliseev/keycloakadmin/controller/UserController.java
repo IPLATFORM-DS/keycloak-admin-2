@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import space.eliseev.keycloakadmin.commons.UserFormBuilderFactory;
 import space.eliseev.keycloakadmin.entity.User;
 import space.eliseev.keycloakadmin.service.UserService;
 
@@ -43,6 +44,7 @@ import java.util.Optional;
 public class UserController {
 
     private final UserService userService;
+    private final UserFormBuilderFactory userFormBuilderFactory;
 
     @Operation(summary = "Get all users", description = "It can be used to get list of all users in all realms",
             tags = {"user"})
@@ -71,5 +73,11 @@ public class UserController {
         return user
                 .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping(value = "/save/{format}", produces = "text/csv")
+    public byte[] saveInCsv(@PathVariable Integer format) {
+        System.out.println(format);
+        return userFormBuilderFactory.download(userService.getAllUsers(), format);
     }
 }
