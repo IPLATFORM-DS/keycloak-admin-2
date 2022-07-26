@@ -3,19 +3,16 @@ package space.eliseev.keycloakadmin.service;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbookType;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import space.eliseev.keycloakadmin.entity.User;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 @Service
-public class UserFormBuilderXls implements UserFormBuilder{
+public class UserFormBuilderXlsx implements UserFormBuilder{
     @Override
     public byte[] download(List<User> list) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();

@@ -19,6 +19,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections4.MultiValuedMap;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -79,8 +81,19 @@ public class UserController {
 
 
     @GetMapping(value = "/save/{format}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-    public byte[] saveInCsv(@PathVariable Integer format) {
-        System.out.println(format);
-        return userFormBuilderFactory.download(userService.getAllUsers(), format);
+    public ResponseEntity<byte[]> saveInCsv(@PathVariable String format) {
+        HttpHeaders headers = new HttpHeaders();
+        switch (format) {
+            case "xlsx":
+                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=userlist.xlsx");
+                break;
+            case "csv":
+                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=userlist.csv");
+                break;
+            default:
+                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=userlist");
+        }
+        return new ResponseEntity<>(userFormBuilderFactory.download(userService.getAllUsers(), format),
+                headers, HttpStatus.OK);
     }
 }

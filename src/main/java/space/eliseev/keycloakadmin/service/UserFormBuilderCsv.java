@@ -15,11 +15,17 @@ public class UserFormBuilderCsv implements UserFormBuilder{
     @Override
     public byte[] download(List<User> dtos)  {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("email").append(";").append("emailVerified").append(";").append("username\r\n");
+        stringBuilder.append("email").append(";").append("emailVerified").append(";")
+                .append("firstName").append(";").append("lastName").append(";")
+                .append("username").append(";").append("createdTimestamp")
+                .append("\r\n");
         for (User dto : dtos) {
             stringBuilder.append(dto.getEmail()).append(";")
                     .append(dto.getEmailVerified()).append(";")
-                    .append(dto.getUsername())
+                    .append(dto.getFirstName()).append(";")
+                    .append(dto.getLastName()).append(";")
+                    .append(dto.getUsername()).append(";")
+                    .append(dto.getCreatedTimestamp())
                     .append("\r\n");
         }
         return stringBuilder.toString().getBytes();
