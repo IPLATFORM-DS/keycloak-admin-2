@@ -3,7 +3,7 @@ package space.eliseev.keycloakadmin.commons;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-import space.eliseev.keycloakadmin.entity.User;
+import space.eliseev.keycloakadmin.dto.UserDto;
 import space.eliseev.keycloakadmin.exception.BadFileFormatExeption;
 import space.eliseev.keycloakadmin.service.UserFormBuilder;
 import space.eliseev.keycloakadmin.service.UserFormBuilderCsv;
@@ -19,7 +19,7 @@ public class UserFormBuilderFactory {
     private final UserFormBuilderXlsx userFormBuilderXlsx;
     private final Map<FileType, UserFormBuilder> map;
 
-    public byte[] download(List<User> data, String fileType) {
+    public byte[] download(List<UserDto> data, String fileType) {
         FileType type;
         try {
             type = FileType.valueOf(fileType.toUpperCase());
