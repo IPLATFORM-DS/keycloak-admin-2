@@ -1,8 +1,10 @@
 package space.eliseev.keycloakadmin.commons;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import space.eliseev.keycloakadmin.entity.User;
+import space.eliseev.keycloakadmin.exception.BadFileFormatExeption;
 import space.eliseev.keycloakadmin.service.UserFormBuilder;
 import space.eliseev.keycloakadmin.service.UserFormBuilderCsv;
 import space.eliseev.keycloakadmin.service.UserFormBuilderXlsx;
@@ -18,15 +20,29 @@ public class UserFormBuilderFactory {
     private final Map<FileType, UserFormBuilder> map;
 
     public byte[] download(List<User> data, String fileType) {
-
-        if (map.size() == 0) {
-            map.put(FileType.csv, userFormBuilderCsv);
-            map.put(FileType.xlsx, userFormBuilderXlsx);
+        FileType type;
+        try {
+            type = FileType.valueOf(fileType.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new BadFileFormatExeption("Ошибка в процессе определения формата. Формат не найден(2)");
         }
-        return map.get(FileType.valueOf(fileType)).download(data);
+        UserFormBuilder builder = map.get(type);
+        if (builder == null) {
+            throw new BadFileFormatExeption("Ошибка в процессе обработки формата");
+        }
+        return builder.download(data);
     }
+
+    @Bean
+    public void setMap() {
+        if (map.size() == 0) {
+            map.put(FileType.CSV, userFormBuilderCsv);
+            map.put(FileType.XLSX, userFormBuilderXlsx);
+        }
+    }
+
     private enum FileType {
-        xlsx,
-        csv
+        XLSX,
+        CSV
     }
 }

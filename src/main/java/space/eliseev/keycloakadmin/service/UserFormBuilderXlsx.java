@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import space.eliseev.keycloakadmin.exception.BadFileFormatExeption;
 
 @Service
 public class UserFormBuilderXlsx implements UserFormBuilder{
@@ -41,7 +42,7 @@ public class UserFormBuilderXlsx implements UserFormBuilder{
             workbook.setWorkbookType(XSSFWorkbookType.XLSX);
             workbook.write(bos);
         } catch (IOException ioe) {
-
+            throw new BadFileFormatExeption("Ошибка в процессе перевода в формат xlsx");
         }
         return bos.toByteArray();
     }
