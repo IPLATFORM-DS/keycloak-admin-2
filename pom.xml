@@ -104,6 +104,7 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.13.0</version>
                 <configuration>
+                    <username>Anastasiya</username>
                     <driver>org.postgresql.Driver</driver>
                     <url>jdbc:postgresql://localhost:5432/keycloak</url>
                     <changeLogFile>src/main/resources/db/changeset/add_10_users.yml</changeLogFile>
