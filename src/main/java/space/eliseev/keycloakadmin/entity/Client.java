@@ -16,19 +16,19 @@ import javax.persistence.Table;
 public class Client extends BaseEntity {
 
     @Column (name = "enabled")
-    private boolean enabled;
+    private Boolean enabled;
 
     @Column (name = "full_scope_allowed")
-    private boolean fullScopeAllowed;
+    private Boolean fullScopeAllowed;
 
     @Column (name = "client_id")
     private String clientId;
 
     @Column (name = "not_before")
-    private int notBefore;
+    private Integer notBefore;
 
     @Column (name = "public_client")
-    private boolean publicClient;
+    private Boolean publicClient;
 
     @Column (name = "secret")
     private String secret;
@@ -37,13 +37,13 @@ public class Client extends BaseEntity {
     private String baseUrl;
 
     @Column (name = "bearer_only")
-    private boolean bearerOnly;
+    private Boolean bearerOnly;
 
     @Column (name = "management_url")
     private String managementUrl;
 
     @Column (name = "surrogate_auth_required")
-    private boolean surrogateAuthRequired;
+    private Boolean surrogateAuthRequired;
 
     @Column (name = "realm_id")
     private String realmId;
@@ -52,19 +52,19 @@ public class Client extends BaseEntity {
     private String protocol;
 
     @Column (name = "node_rereg_timeout")
-    private int nodeReregTimeout;
+    private Integer nodeReregTimeout;
 
     @Column (name = "frontchannel_logout")
-    private boolean frontchannelLogout;
+    private Boolean frontchannelLogout;
 
     @Column (name = "consent_required")
-    private boolean consentRequired;
+    private Boolean consentRequired;
 
     @Column (name = "name")
     private String name;
 
     @Column (name = "service_accounts_enabled")
-    private boolean serviceAccountsEnabled;
+    private Boolean serviceAccountsEnabled;
 
     @Column (name = "client_authenticator_type")
     private String clientAuthenticatorType;
@@ -79,15 +79,15 @@ public class Client extends BaseEntity {
     private String registrationToken;
 
     @Column (name = "standard_flow_enabled")
-    private boolean standardFlowEnabled;
+    private Boolean standardFlowEnabled;
 
     @Column (name = "implicit_flow_enabled")
-    private boolean implicitFlowEnabled;
+    private Boolean implicitFlowEnabled;
 
     @Column (name = "direct_access_grants_enabled")
-    private boolean directAccessGrantsEnabled;
+    private Boolean directAccessGrantsEnabled;
 
     @Column (name = "always_display_in_console")
-    private boolean alwaysDisplayInConsole;
+    private Boolean alwaysDisplayInConsole;
 
 }
