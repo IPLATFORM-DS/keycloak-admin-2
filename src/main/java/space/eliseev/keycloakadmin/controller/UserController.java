@@ -19,14 +19,13 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import space.eliseev.keycloakadmin.commons.UserFormBuilderFactory;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import space.eliseev.keycloakadmin.entity.User;
-import space.eliseev.keycloakadmin.exception.BadFileFormatExeption;
 import space.eliseev.keycloakadmin.service.UserService;
 
 import java.util.List;
@@ -50,11 +49,11 @@ public class UserController {
             tags = {"user"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json",
-                    array = @ArraySchema(schema = @Schema(implementation = User.class))),
+                    array = @ArraySchema(schema = @Schema(implementation = UserDto.class))),
                     description = "Successful operation (List may be empty)")
     })
     @GetMapping(value = "/getAll")
-    public ResponseEntity<List<User>> getUsers() {
+    public ResponseEntity<List<UserDto>> getUsers() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
@@ -62,47 +61,16 @@ public class UserController {
             tags = {"user"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json",
-                    array = @ArraySchema(schema = @Schema(implementation = User.class))),
+                    array = @ArraySchema(schema = @Schema(implementation = UserDto.class))),
                     description = "Successful operation (List may be empty)"),
             @ApiResponse(responseCode = "404", content = @Content, description = "User not found")
     })
     @GetMapping("/get/{id}")
-    public ResponseEntity<User> getById(@Parameter(required = true, description = "ID of requested user")
-                                        @PathVariable String id) {
-        final Optional<User> user = userService.getById(id);
+    public ResponseEntity<UserDto> getById(@Parameter(required = true, description = "ID of requested user")
+                                           @PathVariable String id) {
+        final Optional<UserDto> user = userService.getById(id);
         return user
                 .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-
-    @Operation(summary = "Get user list as file", description = "It list of users in file",
-            tags = {"user"})
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_OCTET_STREAM_VALUE,
-                    schema = @Schema(implementation = User.class)),
-                    description = "Successful operation"),
-            @ApiResponse(responseCode = "404", content = @Content, description = "Format not found")
-    })
-    @GetMapping(value = "/save/{format}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-    public ResponseEntity<byte[]> saveInCsv(@PathVariable String format) {
-        HttpHeaders headers = new HttpHeaders();
-        switch (format) {
-            case "XLSX":
-                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=userlist.xlsx");
-                break;
-            case "CSV":
-                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=userlist.csv");
-                break;
-            default:
-                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=userlist");
-        }
-        return new ResponseEntity<>(userFormBuilderFactory.download(userService.getAllUsers(), format),
-                headers, HttpStatus.OK);
-    }
-
-    @ExceptionHandler(BadFileFormatExeption.class)
-    public ResponseEntity getBadFileFormatExeption(BadFileFormatExeption e) {
-        return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 }
