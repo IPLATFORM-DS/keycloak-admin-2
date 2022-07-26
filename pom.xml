@@ -118,7 +118,7 @@
                     <url>jdbc:postgresql://localhost:5432/keycloak</url>
                     <changeLogFile>src/main/resources/db/changeset/add_10_users.yml</changeLogFile>
                     <username>postgres</username>
-                    <password>postgres</password>
+                    <password>gfcgjhn343</password>
                     <outputChangeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</outputChangeLogFile>
                     <goal>generateChangeLog</goal>
                     <goal>update</goal>
@@ -159,7 +159,7 @@
             <properties>
                 <db-url>jdbc:postgresql://localhost:5432/keycloak</db-url>
                 <db-username>postgres</db-username>
-                <db-password>postgres</db-password>
+                <db-password>gfcgjhn343</db-password>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
