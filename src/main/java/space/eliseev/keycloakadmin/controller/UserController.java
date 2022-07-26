@@ -101,8 +101,8 @@ public class UserController {
                 headers, HttpStatus.OK);
     }
 
-    @ExceptionHandler(BadFileFormatExeption.class)
-    public ResponseEntity getBadFileFormatExeption(BadFileFormatExeption e) {
+    @ExceptionHandler({BadFileFormatExeption.class, IllegalArgumentException.class})
+    public ResponseEntity getBadFileFormatExeption(Exception e) {
         return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 }
