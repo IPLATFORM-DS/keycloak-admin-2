@@ -3,13 +3,11 @@ package space.eliseev.keycloakadmin.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import space.eliseev.keycloakadmin.entity.Event;
 import space.eliseev.keycloakadmin.service.EventService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,36 +37,14 @@ public class EventController {
     }
 
     @GetMapping(value = "/all/{time}")
-    public ResponseEntity<List<Event>> getAllByTime(@PathVariable Long time) {
-        if (time == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        final List<Event> events = eventService.getAllByTime(time);
-
-        if (events == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else if (events.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-
-        return new ResponseEntity<>(events, HttpStatus.OK);
+    public ResponseEntity<List<Event>> getAllByTime(@RequestParam LocalDateTime startDate, @RequestParam LocalDateTime endDate) {
+        return new ResponseEntity<>(eventService.getByDateCreatedBetween(startDate, endDate), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{user}/all/{time}")
-    public ResponseEntity<List<Event>> getEventsByUserInTimePeriod(@PathVariable("user") String username, @PathVariable Long time) {
-        if (username == null || time == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        final List<Event> events = eventService.getAllByUsernameAndTime(username, time);
-
-        if (events == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else if (events.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-
-        return new ResponseEntity<>(events, HttpStatus.OK);
+    @GetMapping(value = "/user/all/time")
+    public ResponseEntity<List<Event>> getEventsByUserInTimePeriod(@RequestParam String username,
+                                                                   @RequestParam LocalDateTime startDate,
+                                                                   @RequestParam LocalDateTime endDate) {
+        return new ResponseEntity<>(eventService.getByUsernameAndDateCreatedBetween(username, startDate, endDate), HttpStatus.OK);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import space.eliseev.keycloakadmin.entity.Event;
 import space.eliseev.keycloakadmin.repository.EventRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,12 +31,12 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> getAllByTime(@NonNull Long time) {
-        return eventRepository.findAllByTime(time);
+    public List<Event> getByDateCreatedBetween(@NonNull LocalDateTime startDate, @NonNull LocalDateTime endDate) {
+        return eventRepository.findByDateCreatedBetween(startDate, endDate);
     }
 
     @Override
-    public List<Event> getAllByUsernameAndTime(@NonNull String username, @NonNull Long time) {
-        return eventRepository.findAllByUsernameAndTime(username, time);
+    public List<Event> getByUsernameAndDateCreatedBetween(@NonNull String username, @NonNull LocalDateTime startDate, @NonNull LocalDateTime endDate) {
+        return eventRepository.findByUsernameAndDateCreatedBetween(username, startDate, endDate);
     }
 }
