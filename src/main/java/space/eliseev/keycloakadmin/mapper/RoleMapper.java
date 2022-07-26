@@ -9,7 +9,5 @@ import space.eliseev.keycloakadmin.entity.Role;
 
 @Mapper(componentModel = "spring")
 public interface RoleMapper {
-    @Mapping(target = "clientName", source = "client.clientId")
-    @Mapping(target = "realmName", source = "realm.name")
-    RoleDto roleToRoleDto(Role role, Client client, Realm realm);
+    RoleDto roleToRoleDto(Role role);
 }
