@@ -13,11 +13,17 @@ package space.eliseev.keycloakadmin.service;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import space.eliseev.keycloakadmin.commons.TimeUtils;
+import space.eliseev.keycloakadmin.dto.UserDto;
+import space.eliseev.keycloakadmin.entity.Realm;
 import space.eliseev.keycloakadmin.entity.User;
+import space.eliseev.keycloakadmin.mapper.UserMapper;
 import space.eliseev.keycloakadmin.repository.UserRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Реализация {@link UserService}
@@ -27,16 +33,37 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-
+    private final UserMapper userMapper;
     private final UserRepository userRepository;
+    private final RealmService realmService;
 
     @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserDto> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(user -> {
+                    Optional<Realm> realm = realmService.getById(user.getRealmId());
+                    LocalDateTime time = TimeUtils.toLocalDateTime(user.getCreatedTimestamp());
+                    String realmName = realm.map(Realm::getName).orElse(null);
+                    UserDto dto = userMapper.userToUserDto(user);
+                    dto.setRealmName(realmName);
+                    dto.setCreatedTimestampLocalDateTime(time);
+                    return dto;
+                })
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Optional<User> getById(@NonNull final String id) {
-        return userRepository.findById(id);
+    public Optional<UserDto> getById(@NonNull final String id) {
+        Optional<User> user =  userRepository.findById(id);
+        UserDto toDto = null;
+        if (user.isPresent()) {
+            String realmName = realmService.getById(user.get().getRealmId()).map(Realm::getName).orElse(null);
+            LocalDateTime time = TimeUtils.toLocalDateTime(user.get().getCreatedTimestamp());
+            toDto = userMapper.userToUserDto(user.orElse(null));
+            toDto.setCreatedTimestampLocalDateTime(time);
+            toDto.setRealmName(realmName);
+        }
+        return Optional.ofNullable(toDto);
     }
 }
