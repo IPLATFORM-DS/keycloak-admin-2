@@ -15,7 +15,6 @@ public interface EventRepository extends JpaRepository<Event, String> {
      * @param userId
      * @return
      */
-    @Query("from Event  where userId = :userId")
     List<Event> findAllByUsername(String userId);
     /**
      * Returns events which are created between startDate and endDate

@@ -4,8 +4,11 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import space.eliseev.keycloakadmin.commons.TimeUtils;
+import space.eliseev.keycloakadmin.dto.ClientDto;
 import space.eliseev.keycloakadmin.dto.EventDto;
 import space.eliseev.keycloakadmin.entity.Event;
+import space.eliseev.keycloakadmin.entity.Realm;
+import space.eliseev.keycloakadmin.entity.User;
 import space.eliseev.keycloakadmin.mapper.EventMapper;
 import space.eliseev.keycloakadmin.repository.EventRepository;
 
@@ -19,6 +22,9 @@ import java.util.stream.Collectors;
 public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
     private final EventMapper eventMapper;
+    private final UserService userService;
+    private final RealmService realmService;
+    private final ClientService clientService;
 
     @Override
     public List<EventDto> getAll() {
@@ -26,8 +32,22 @@ public class EventServiceImpl implements EventService {
                 .findAll()
                 .stream()
                 .map(event -> {
+                    // Изменить после реализации RealmDto mapping
+                    Optional<Realm> realm = realmService.getById(event.getRealmId());
+                    String realmName = realm.map(Realm::getName).orElse(null);
+                    // Изменить после реализации UserDto mapping
+                    Optional<User> user = userService.getById(event.getUserId());
+                    String userName = user.map(User::getUsername).orElse(null);
+
+                    Optional<ClientDto> client = clientService.getById(event.getClientId());
+                    String clientName = client.map(ClientDto::getName).orElse(null);
+
                     LocalDateTime time = TimeUtils.toLocalDateTime(event.getEventTime());
                     EventDto dto = eventMapper.eventToEventDtO(event);
+
+                    dto.setRealmName(realmName);
+                    dto.setUserName(userName);
+                    dto.setClientName(clientName);
                     dto.setEventTime(time);
                     return dto;
                 })
@@ -39,8 +59,22 @@ public class EventServiceImpl implements EventService {
         Optional<Event> event = eventRepository.findById(id);
         EventDto dto = null;
         if (event.isPresent()) {
+            // Изменить после реализации RealmDto mapping
+            Optional<Realm> realm = realmService.getById(event.get().getRealmId());
+            String realmName = realm.map(Realm::getName).orElse(null);
+            // Изменить после реализации UserDto mapping
+            Optional<User> user = userService.getById(event.get().getUserId());
+            String userName = user.map(User::getUsername).orElse(null);
+
+            Optional<ClientDto> client = clientService.getById(event.get().getClientId());
+            String clientName = client.map(ClientDto::getName).orElse(null);
+
             LocalDateTime time = TimeUtils.toLocalDateTime(event.get().getEventTime());
             dto = eventMapper.eventToEventDtO(event.orElse(null));
+
+            dto.setRealmName(realmName);
+            dto.setUserName(userName);
+            dto.setClientName(clientName);
             dto.setEventTime(time);
         }
         return Optional.ofNullable(dto);
@@ -52,8 +86,22 @@ public class EventServiceImpl implements EventService {
                 .findAllByUsername(userId)
                 .stream()
                 .map(event -> {
+                    // Изменить после реализации RealmDto mapping
+                    Optional<Realm> realm = realmService.getById(event.getRealmId());
+                    String realmName = realm.map(Realm::getName).orElse(null);
+                    // Изменить после реализации UserDto mapping
+                    Optional<User> user = userService.getById(event.getUserId());
+                    String userName = user.map(User::getUsername).orElse(null);
+
+                    Optional<ClientDto> client = clientService.getById(event.getClientId());
+                    String clientName = client.map(ClientDto::getName).orElse(null);
+
                     LocalDateTime time = TimeUtils.toLocalDateTime(event.getEventTime());
                     EventDto dto = eventMapper.eventToEventDtO(event);
+
+                    dto.setRealmName(realmName);
+                    dto.setUserName(userName);
+                    dto.setClientName(clientName);
                     dto.setEventTime(time);
                     return dto;
                 })
@@ -67,8 +115,22 @@ public class EventServiceImpl implements EventService {
                 .findByDateCreatedBetween(TimeUtils.toLong(startDate), TimeUtils.toLong(endDate))
                 .stream()
                 .map(event -> {
+                    // Изменить после реализации RealmDto mapping
+                    Optional<Realm> realm = realmService.getById(event.getRealmId());
+                    String realmName = realm.map(Realm::getName).orElse(null);
+                    // Изменить после реализации UserDto mapping
+                    Optional<User> user = userService.getById(event.getUserId());
+                    String userName = user.map(User::getUsername).orElse(null);
+
+                    Optional<ClientDto> client = clientService.getById(event.getClientId());
+                    String clientName = client.map(ClientDto::getName).orElse(null);
+
                     LocalDateTime time = TimeUtils.toLocalDateTime(event.getEventTime());
                     EventDto dto = eventMapper.eventToEventDtO(event);
+
+                    dto.setRealmName(realmName);
+                    dto.setUserName(userName);
+                    dto.setClientName(clientName);
                     dto.setEventTime(time);
                     return dto;
                 })
@@ -83,8 +145,22 @@ public class EventServiceImpl implements EventService {
                 .findByUsernameAndDateCreatedBetween(userId, TimeUtils.toLong(startDate), TimeUtils.toLong(endDate))
                 .stream()
                 .map(event -> {
+                    // Изменить после реализации RealmDto mapping
+                    Optional<Realm> realm = realmService.getById(event.getRealmId());
+                    String realmName = realm.map(Realm::getName).orElse(null);
+                    // Изменить после реализации UserDto mapping
+                    Optional<User> user = userService.getById(event.getUserId());
+                    String userName = user.map(User::getUsername).orElse(null);
+
+                    Optional<ClientDto> client = clientService.getById(event.getClientId());
+                    String clientName = client.map(ClientDto::getName).orElse(null);
+
                     LocalDateTime time = TimeUtils.toLocalDateTime(event.getEventTime());
                     EventDto dto = eventMapper.eventToEventDtO(event);
+
+                    dto.setRealmName(realmName);
+                    dto.setUserName(userName);
+                    dto.setClientName(clientName);
                     dto.setEventTime(time);
                     return dto;
                 })
