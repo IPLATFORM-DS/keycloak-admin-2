@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import space.eliseev.keycloakadmin.dto.ClientDto;
 import space.eliseev.keycloakadmin.dto.RoleDto;
+import space.eliseev.keycloakadmin.entity.Client;
 import space.eliseev.keycloakadmin.entity.Realm;
 import space.eliseev.keycloakadmin.mapper.RoleMapper;
 import space.eliseev.keycloakadmin.repository.RoleRepository;
@@ -40,7 +41,7 @@ public class RoleServiceImpl implements RoleService {
             String realmName = realm.map(Realm::getName).orElse(null);
             RoleDto dto = roleMapper.roleToRoleDto(role);
             dto.setRealmName(realmName);
-            dto.setRealmName(clientName);
+            dto.setClientName(clientName);
             return dto;
         })
                 .collect(Collectors.toList());
