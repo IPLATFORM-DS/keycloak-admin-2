@@ -9,6 +9,8 @@ import space.eliseev.keycloakadmin.service.UserFormBuilder;
 import space.eliseev.keycloakadmin.service.UserFormBuilderCsv;
 import space.eliseev.keycloakadmin.service.UserFormBuilderXlsx;
 
+import javax.annotation.PostConstruct;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +19,7 @@ import java.util.Map;
 public class UserFormBuilderFactory {
     private final UserFormBuilderCsv userFormBuilderCsv;
     private final UserFormBuilderXlsx userFormBuilderXlsx;
-    private final Map<FileType, UserFormBuilder> map;
+    private final Map<FileType, UserFormBuilder> map = new EnumMap<FileType, UserFormBuilder>(FileType.class);
 
     public byte[] download(List<UserDto> data, String fileType) {
         FileType type;
@@ -33,12 +35,10 @@ public class UserFormBuilderFactory {
         return builder.download(data);
     }
 
-    @Bean
-    public void setMap() {
-        if (map.size() == 0) {
-            map.put(FileType.CSV, userFormBuilderCsv);
-            map.put(FileType.XLSX, userFormBuilderXlsx);
-        }
+    @PostConstruct
+    public void init() {
+        map.put(FileType.CSV, userFormBuilderCsv);
+        map.put(FileType.XLSX, userFormBuilderXlsx);
     }
 
     private enum FileType {
