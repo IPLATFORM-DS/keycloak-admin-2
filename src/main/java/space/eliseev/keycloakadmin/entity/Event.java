@@ -2,12 +2,9 @@ package space.eliseev.keycloakadmin.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.time.LocalDateTime;
+import javax.persistence.*;
+
 
 @Getter
 @Setter
@@ -38,10 +35,6 @@ public class Event extends BaseEntity {
     
     @Column(name = "event_time")
     private Long eventTime;
-
-    @Column(name = "created_timestamp")
-    @CreationTimestamp
-    private LocalDateTime dateCreated;
     
     @Column(name = "type")
     private String type;
