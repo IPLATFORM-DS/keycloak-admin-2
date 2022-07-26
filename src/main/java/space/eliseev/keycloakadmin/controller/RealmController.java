@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +29,7 @@ public class RealmController {
             tags = {"realm"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json",
-                    array = @ArraySchema(schema = @Schema(implementation = Realm.class))),
+                    array = @ArraySchema(schema = @Schema(implementation = RealmDto.class))),
                     description = "successful operation (may be empty list)")
     })
     @GetMapping(value = "/getAll")
@@ -41,7 +40,7 @@ public class RealmController {
     @Operation(summary = "Get realm by ID", description = "It returns one realm with specified id", tags = {"realm"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "successful operation",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = Realm.class))),
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = RealmDto.class))),
             @ApiResponse(responseCode = "404", description = "realm not found", content = @Content)
     })
     @GetMapping(value = "/getById/{id}")
@@ -55,7 +54,7 @@ public class RealmController {
     @Operation(summary = "Get realm by name", description = "It returns one realm with specified name", tags = {"realm"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "successful operation",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = Realm.class))),
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = RealmDto.class))),
             @ApiResponse(responseCode = "404", description = "realm not found", content = @Content)
     })
     @GetMapping(value = "/getByName/{name}")
