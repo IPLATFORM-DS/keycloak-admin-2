@@ -32,7 +32,10 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public List<RoleDto> getAllRoles() {
-        return toDto(roleRepository.findAll());
+        return roleRepository.findAll()
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -43,16 +46,8 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public Optional<RoleDto> getById(@NonNull final String id) {
-        Optional<Role> role = roleRepository.findById(id);
-        RoleDto toDto = null;
-        if (role.isPresent()) {
-            String clientName = clientService.getById(String.valueOf(role.get().getClient())).map(ClientDto::getName).orElse(null);
-            String realmName = realmService.getById(role.get().getRealmId()).map(RealmDto::getName).orElse(null);
-            toDto = roleMapper.roleToRoleDto(role.orElse(null));
-            toDto.setClientName(clientName);
-            toDto.setRealmName(realmName);
-        }
-        return Optional.ofNullable(toDto);
+        return Optional.ofNullable(toDto(roleRepository.findById(id)
+                .orElse(null)));
     }
 
     /**
@@ -63,23 +58,21 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public List<RoleDto> getByName(@NonNull final String name) {
-        return toDto(roleRepository.findByName(name));
+        return roleRepository.findByName(name)
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
-    private List<RoleDto> toDto(List<Role> dtoList) {
-        return dtoList
-                .stream()
-                .map(role -> {
-                    Optional<ClientDto> client = clientService.getById(String.valueOf((role.getClient())));
-                    Optional<RealmDto> realm = realmService.getById(role.getRealmId());
-                    String clientName = client.map(ClientDto::getName).orElse(null);
-                    String realmName = realm.map(RealmDto::getName).orElse(null);
-                    RoleDto dto = roleMapper.roleToRoleDto(role);
-                    dto.setRealmName(realmName);
-                    dto.setClientName(clientName);
-                    return dto;
-                })
-                .collect(Collectors.toList());
+    private RoleDto toDto(Role role) {
+        Optional<ClientDto> client = clientService.getById(String.valueOf((role.getClient())));
+        Optional<RealmDto> realm = realmService.getById(role.getRealmId());
+        String clientName = client.map(ClientDto::getName).orElse(null);
+        String realmName = realm.map(RealmDto::getName).orElse(null);
+        RoleDto dto = roleMapper.roleToRoleDto(role);
+        dto.setRealmName(realmName);
+        dto.setClientName(clientName);
+        return dto;
     }
 }
 
