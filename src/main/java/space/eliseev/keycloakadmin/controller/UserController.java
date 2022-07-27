@@ -26,7 +26,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import space.eliseev.keycloakadmin.commons.UserFormBuilderFactory;
 import space.eliseev.keycloakadmin.dto.UserDto;
-import space.eliseev.keycloakadmin.entity.User;
 import space.eliseev.keycloakadmin.exception.BadFileFormatExeption;
 import space.eliseev.keycloakadmin.service.UserService;
 
@@ -80,7 +79,7 @@ public class UserController {
             tags = {"user"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_OCTET_STREAM_VALUE,
-                    schema = @Schema(implementation = User.class)),
+                    schema = @Schema(implementation = UserDto.class)),
                     description = "Successful operation"),
             @ApiResponse(responseCode = "404", content = @Content, description = "Format not found")
     })
@@ -103,6 +102,6 @@ public class UserController {
 
     @ExceptionHandler({BadFileFormatExeption.class, IllegalArgumentException.class})
     public ResponseEntity getBadFileFormatExeption(Exception e) {
-        return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 }

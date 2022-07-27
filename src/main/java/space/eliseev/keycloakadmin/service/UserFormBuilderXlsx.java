@@ -1,5 +1,6 @@
 package space.eliseev.keycloakadmin.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
@@ -15,6 +16,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+@Slf4j
 @Service
 public class UserFormBuilderXlsx implements UserFormBuilder {
     @Override
@@ -49,8 +51,12 @@ public class UserFormBuilderXlsx implements UserFormBuilder {
             workbook.setWorkbookType(XSSFWorkbookType.XLSX);
             workbook.write(bos);
             result = bos.toByteArray();
-        } catch (IOException ioe) {
-            throw new BadFileFormatExeption("Ошибка в процессе перевода в формат xlsx");
+        } catch (IOException e) {
+            String error = new StringBuilder().append("Error during parsing in XLSX").append("\n")
+                    .append(e.getMessage()).append("\n")
+                    .append(e.getCause()).append("\n").toString();
+            log.error(error);
+            throw new BadFileFormatExeption("Error during parsing in XLSX");
         }
         return result;
     }
