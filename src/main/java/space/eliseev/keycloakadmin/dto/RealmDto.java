@@ -16,8 +16,6 @@ public class RealmDto {
 
     private Boolean eventsEnabled;
 
-    private Long eventsExpiration;
-
     private String name;
 
     private Integer notBefore;

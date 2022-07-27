@@ -14,8 +14,8 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import space.eliseev.keycloakadmin.commons.TimeUtils;
+import space.eliseev.keycloakadmin.dto.RealmDto;
 import space.eliseev.keycloakadmin.dto.UserDto;
-import space.eliseev.keycloakadmin.entity.Realm;
 import space.eliseev.keycloakadmin.entity.User;
 import space.eliseev.keycloakadmin.mapper.UserMapper;
 import space.eliseev.keycloakadmin.repository.UserRepository;
@@ -42,9 +42,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll()
                 .stream()
                 .map(user -> {
-                    Optional<Realm> realm = realmService.getById(user.getRealmId());
+                    Optional<RealmDto> realm = realmService.getById(user.getRealmId());
                     LocalDateTime time = TimeUtils.toLocalDateTime(user.getCreatedTimestamp());
-                    String realmName = realm.map(Realm::getName).orElse(null);
+                    String realmName = realm.map(RealmDto::getName).orElse(null);
                     UserDto dto = userMapper.userToUserDto(user);
                     dto.setRealmName(realmName);
                     dto.setCreatedTimestampLocalDateTime(time);
@@ -55,10 +55,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserDto> getById(@NonNull final String id) {
-        Optional<User> user =  userRepository.findById(id);
+        Optional<User> user = userRepository.findById(id);
         UserDto toDto = null;
         if (user.isPresent()) {
-            String realmName = realmService.getById(user.get().getRealmId()).map(Realm::getName).orElse(null);
+            String realmName = realmService.getById(user.get().getRealmId()).map(RealmDto::getName).orElse(null);
             LocalDateTime time = TimeUtils.toLocalDateTime(user.get().getCreatedTimestamp());
             toDto = userMapper.userToUserDto(user.orElse(null));
             toDto.setCreatedTimestampLocalDateTime(time);
