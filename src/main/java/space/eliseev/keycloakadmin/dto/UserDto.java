@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class UserDto {
+    private String id;
     private String email;
     private Boolean emailVerified;
     private String firstName;

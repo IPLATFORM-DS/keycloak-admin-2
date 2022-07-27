@@ -66,4 +66,9 @@ public class UserServiceImpl implements UserService {
         }
         return Optional.ofNullable(toDto);
     }
+
+    @Override
+    public Optional<UserDto> getByUsername(@NonNull String username) {
+        return Optional.ofNullable(userMapper.userToUserDto(userRepository.findByUsername(username).orElse(null)));
+    }
 }
