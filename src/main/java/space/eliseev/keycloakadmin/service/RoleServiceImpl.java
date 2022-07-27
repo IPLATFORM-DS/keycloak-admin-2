@@ -4,8 +4,8 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import space.eliseev.keycloakadmin.dto.ClientDto;
+import space.eliseev.keycloakadmin.dto.RealmDto;
 import space.eliseev.keycloakadmin.dto.RoleDto;
-import space.eliseev.keycloakadmin.entity.Realm;
 import space.eliseev.keycloakadmin.entity.Role;
 import space.eliseev.keycloakadmin.mapper.RoleMapper;
 import space.eliseev.keycloakadmin.repository.RoleRepository;
@@ -32,19 +32,7 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public List<RoleDto> getAllRoles() {
-        return roleRepository.findAll()
-                .stream()
-                .map(role -> {
-                    Optional<ClientDto> client = clientService.getById(String.valueOf(role.getClient()));
-                    Optional<Realm> realm = realmService.getById(role.getRealmId());
-                    String clientName = client.map(ClientDto::getName).orElse(null);
-                    String realmName = realm.map(Realm::getName).orElse(null);
-                    RoleDto dto = roleMapper.roleToRoleDto(role);
-                    dto.setRealmName(realmName);
-                    dto.setClientName(clientName);
-                    return dto;
-                })
-                .collect(Collectors.toList());
+        return toDto(roleRepository.findAll());
     }
 
     /**
@@ -59,7 +47,7 @@ public class RoleServiceImpl implements RoleService {
         RoleDto toDto = null;
         if (role.isPresent()) {
             String clientName = clientService.getById(String.valueOf(role.get().getClient())).map(ClientDto::getName).orElse(null);
-            String realmName = realmService.getById(role.get().getRealmId()).map(Realm::getName).orElse(null);
+            String realmName = realmService.getById(role.get().getRealmId()).map(RealmDto::getName).orElse(null);
             toDto = roleMapper.roleToRoleDto(role.orElse(null));
             toDto.setClientName(clientName);
             toDto.setRealmName(realmName);
@@ -71,18 +59,21 @@ public class RoleServiceImpl implements RoleService {
      * Получить роль по имени (может быть список из нескольких ролей при совпадении названий
      * для разных Realm.
      *
-     * @param name - название роли (поле name)
      * @return список ролей (названия роли могут совпадать в разных Realm)
      */
     @Override
     public List<RoleDto> getByName(@NonNull final String name) {
-        return roleRepository.findByName(name)
+        return toDto(roleRepository.findByName(name));
+    }
+
+    private List<RoleDto> toDto(List<Role> dtoList) {
+        return dtoList
                 .stream()
                 .map(role -> {
                     Optional<ClientDto> client = clientService.getById(String.valueOf((role.getClient())));
-                    Optional<Realm> realm = realmService.getById(role.getRealmId());
+                    Optional<RealmDto> realm = realmService.getById(role.getRealmId());
                     String clientName = client.map(ClientDto::getName).orElse(null);
-                    String realmName = realm.map(Realm::getName).orElse(null);
+                    String realmName = realm.map(RealmDto::getName).orElse(null);
                     RoleDto dto = roleMapper.roleToRoleDto(role);
                     dto.setRealmName(realmName);
                     dto.setClientName(clientName);
@@ -91,3 +82,5 @@ public class RoleServiceImpl implements RoleService {
                 .collect(Collectors.toList());
     }
 }
+
+
