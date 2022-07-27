@@ -51,7 +51,7 @@ public class RealmServiceImpl implements RealmService {
      */
     @Override
     public Optional<RealmDto> getByName(@NonNull final String name) {
-        return Optional.ofNullable(realmMapper.realmToRealmDto(realmRepository.findById(name)
+        return Optional.ofNullable(realmMapper.realmToRealmDto(realmRepository.findByName(name)
                 .orElse(null)));
     }
 }
