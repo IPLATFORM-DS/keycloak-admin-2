@@ -2,6 +2,8 @@ package space.eliseev.keycloakadmin.dto;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class UserDto {
     private String email;
@@ -11,5 +13,5 @@ public class UserDto {
     // Соответствует текстовому полю realm_id в таблице realm
     private String realmName;
     private String username;
-    private Long createdTimestamp;
+    private LocalDateTime createdTimestampLocalDateTime;
 }

@@ -11,7 +11,7 @@
 package space.eliseev.keycloakadmin.service;
 
 import lombok.NonNull;
-import space.eliseev.keycloakadmin.entity.User;
+import space.eliseev.keycloakadmin.dto.UserDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +28,7 @@ public interface UserService {
      *
      * @return список всех пользователей
      */
-    List<User> getAllUsers();
+    List<UserDto> getAllUsers();
 
     /**
      * Получить пользователя по идентификатору
@@ -36,5 +36,5 @@ public interface UserService {
      * @param id Идентификатор пользователя
      * @return пользователя
      */
-    Optional<User> getById(@NonNull String id);
+    Optional<UserDto> getById(@NonNull String id);
 }
