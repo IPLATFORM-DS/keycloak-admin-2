@@ -121,7 +121,7 @@
                     <changeLogFile>src/main/resources/db/changeset/add_10_realms.yml</changeLogFile>
                     <changeLogFile>src/main/resources/db/changeset/add_10_clients.yml</changeLogFile>
                     <username>postgres</username>
-                    <password>gfcgjhn343</password>
+                    <password>postgres</password>
                     <outputChangeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</outputChangeLogFile>
                     <goal>generateChangeLog</goal>
                     <goal>update</goal>
@@ -162,7 +162,7 @@
             <properties>
                 <db-url>jdbc:postgresql://localhost:5432/keycloak</db-url>
                 <db-username>postgres</db-username>
-                <db-password>gfcgjhn343</db-password>
+                <db-password>postgres</db-password>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>

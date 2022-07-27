@@ -2,8 +2,6 @@ package space.eliseev.keycloakadmin.dto;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 
 @Data
 public class RealmDto {
@@ -17,8 +15,6 @@ public class RealmDto {
     private Boolean enabled;
 
     private Boolean eventsEnabled;
-
-    private LocalDateTime eventsExpirationLocalDateTime;
 
     private String name;
 
