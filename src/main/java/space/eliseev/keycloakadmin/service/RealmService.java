@@ -1,16 +1,16 @@
 package space.eliseev.keycloakadmin.service;
 
 import lombok.NonNull;
-import space.eliseev.keycloakadmin.entity.Realm;
+import space.eliseev.keycloakadmin.dto.RealmDto;
 
 
 import java.util.List;
 import java.util.Optional;
 
 public interface RealmService {
-    List<Realm> getAllRealms();
+    List<RealmDto> getAllRealms();
 
-    Optional<Realm> getById(@NonNull String id);
+    Optional<RealmDto> getById(@NonNull String id);
 
-    Optional<Realm> getByName(@NonNull String name);
+    Optional<RealmDto> getByName(@NonNull String name);
 }
