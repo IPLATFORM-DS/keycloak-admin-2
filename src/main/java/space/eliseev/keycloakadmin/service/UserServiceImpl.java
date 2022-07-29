@@ -41,57 +41,38 @@ public class UserServiceImpl implements UserService {
     public List<UserDto> getAllUsers() {
         return userRepository.findAll()
                 .stream()
-                .map(user -> {
-                    Optional<RealmDto> realm = realmService.getById(user.getRealmId());
-                    LocalDateTime time = TimeUtils.toLocalDateTime(user.getCreatedTimestamp());
-                    String realmName = realm.map(RealmDto::getName).orElse(null);
-                    UserDto dto = userMapper.userToUserDto(user);
-                    dto.setRealmName(realmName);
-                    dto.setCreatedTimestampLocalDateTime(time);
-                    return dto;
-                })
+                .map(this::toDto)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Optional<UserDto> getById(@NonNull final String id) {
         Optional<User> user = userRepository.findById(id);
-        UserDto toDto = null;
-        if (user.isPresent()) {
-            String realmName = realmService.getById(user.get().getRealmId()).map(RealmDto::getName).orElse(null);
-            LocalDateTime time = TimeUtils.toLocalDateTime(user.get().getCreatedTimestamp());
-            toDto = userMapper.userToUserDto(user.orElse(null));
-            toDto.setCreatedTimestampLocalDateTime(time);
-            toDto.setRealmName(realmName);
-        }
+        UserDto toDto = user.map(this::toDto).orElse(null);
         return Optional.ofNullable(toDto);
     }
 
     @Override
     public Optional<UserDto> getByUsername(@NonNull String username) {
         Optional<User> user = userRepository.findByUsername(username);
-        UserDto toDto = null;
-        if (user.isPresent()) {
-            String realmName = realmService.getById(user.get().getRealmId()).map(RealmDto::getName).orElse(null);
-            LocalDateTime time = TimeUtils.toLocalDateTime(user.get().getCreatedTimestamp());
-            toDto = userMapper.userToUserDto(user.orElse(null));
-            toDto.setCreatedTimestampLocalDateTime(time);
-            toDto.setRealmName(realmName);
-        }
+        UserDto toDto = user.map(this::toDto).orElse(null);
         return Optional.ofNullable(toDto);
     }
 
     @Override
     public Optional<UserDto> getByEmail(@NonNull String email) {
         Optional<User> user = userRepository.findByEmail(email);
-        UserDto toDto = null;
-        if (user.isPresent()) {
-            String realmName = realmService.getById(user.get().getRealmId()).map(RealmDto::getName).orElse(null);
-            LocalDateTime time = TimeUtils.toLocalDateTime(user.get().getCreatedTimestamp());
-            toDto = userMapper.userToUserDto(user.orElse(null));
-            toDto.setCreatedTimestampLocalDateTime(time);
-            toDto.setRealmName(realmName);
-        }
+        UserDto toDto = user.map(this::toDto).orElse(null);
         return Optional.ofNullable(toDto);
+    }
+
+    private UserDto toDto(User user) {
+        Optional<RealmDto> realm = realmService.getById(user.getRealmId());
+        LocalDateTime time = TimeUtils.toLocalDateTime(user.getCreatedTimestamp());
+        String realmName = realm.map(RealmDto::getName).orElse(null);
+        UserDto dto = userMapper.userToUserDto(user);
+        dto.setRealmName(realmName);
+        dto.setCreatedTimestampLocalDateTime(time);
+        return dto;
     }
 }
