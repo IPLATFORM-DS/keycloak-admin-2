@@ -47,7 +47,11 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public Optional<RoleDto> getById(@NonNull final String id) {
-        return Optional.of(toDto(roleRepository.getReferenceById(id)));
+        Optional<Role> role = roleRepository.findById(id);
+        RoleDto toDto = role
+                .map(this::toDto)
+                .orElse(null);
+        return Optional.ofNullable(toDto);
     }
 
     /**

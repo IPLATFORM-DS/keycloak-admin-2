@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import space.eliseev.keycloakadmin.dto.RoleDto;
-import space.eliseev.keycloakadmin.entity.Role;
 import space.eliseev.keycloakadmin.service.RoleService;
 
 import java.util.List;
@@ -36,7 +35,7 @@ public class RoleController {
             tags = {"role"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json",
-                    array = @ArraySchema(schema = @Schema(implementation = Role.class))),
+                    array = @ArraySchema(schema = @Schema(implementation = RoleDto.class))),
                     description = "successful operation (may be empty list)")
     })
     @GetMapping(value = "/getAll", produces = {"application/json"})
@@ -47,7 +46,7 @@ public class RoleController {
     @Operation(summary = "Get role by ID", description = "It returns one role with specified id", tags = {"role"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "successful operation",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = Role.class))),
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = RoleDto.class))),
             @ApiResponse(responseCode = "404", description = "role not found", content = @Content)
     })
     @GetMapping(value = "/getById/{id}", produces = {"application/json"})
@@ -63,7 +62,7 @@ public class RoleController {
             tags = {"role"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json",
-                    array = @ArraySchema(schema = @Schema(implementation = Role.class))),
+                    array = @ArraySchema(schema = @Schema(implementation = RoleDto.class))),
                     description = "successful operation (may be empty list)")
     })
     @GetMapping(value = "/getByName/{name}", produces = {"application/json"})
