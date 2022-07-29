@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import space.eliseev.keycloakadmin.commons.TimeUtils;
 import space.eliseev.keycloakadmin.dto.ClientDto;
 import space.eliseev.keycloakadmin.dto.EventDto;
+import space.eliseev.keycloakadmin.dto.RealmDto;
 import space.eliseev.keycloakadmin.dto.UserDto;
 import space.eliseev.keycloakadmin.entity.Event;
 import space.eliseev.keycloakadmin.entity.Realm;
@@ -28,8 +29,8 @@ public class EventServiceImpl implements EventService {
 
     public EventDto eventMapping(Event event) {
         // Изменить после реализации RealmDto mapping
-        Optional<Realm> realm = realmService.getById(event.getRealmId());
-        String realmName = realm.map(Realm::getName).orElse(null);
+        Optional<RealmDto> realm = realmService.getById(event.getRealmId());
+        String realmName = realm.map(RealmDto::getName).orElse(null);
 
         Optional<UserDto> user = userService.getById(event.getUserId());
         String userName = user.map(UserDto::getUsername).orElse(null);
@@ -62,8 +63,8 @@ public class EventServiceImpl implements EventService {
         EventDto dto = null;
         if (event.isPresent()) {
             // Изменить после реализации RealmDto mapping
-            Optional<Realm> realm = realmService.getById(event.get().getRealmId());
-            String realmName = realm.map(Realm::getName).orElse(null);
+            Optional<RealmDto> realm = realmService.getById(event.get().getRealmId());
+            String realmName = realm.map(RealmDto::getName).orElse(null);
 
             Optional<UserDto> user = userService.getById(event.get().getUserId());
             String userName = user.map(UserDto::getUsername).orElse(null);
