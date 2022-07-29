@@ -52,6 +52,20 @@ public class UserServiceImpl implements UserService {
         return Optional.ofNullable(toDto);
     }
 
+    @Override
+    public Optional<UserDto> getByUsername(@NonNull String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        UserDto toDto = user.map(this::toDto).orElse(null);
+        return Optional.ofNullable(toDto);
+    }
+
+    @Override
+    public Optional<UserDto> getByEmail(@NonNull String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+        UserDto toDto = user.map(this::toDto).orElse(null);
+        return Optional.ofNullable(toDto);
+    }
+
     private UserDto toDto(User user) {
         Optional<RealmDto> realm = realmService.getById(user.getRealmId());
         LocalDateTime time = TimeUtils.toLocalDateTime(user.getCreatedTimestamp());
