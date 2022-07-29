@@ -9,7 +9,6 @@ import space.eliseev.keycloakadmin.dto.EventDto;
 import space.eliseev.keycloakadmin.dto.RealmDto;
 import space.eliseev.keycloakadmin.dto.UserDto;
 import space.eliseev.keycloakadmin.entity.Event;
-import space.eliseev.keycloakadmin.entity.Realm;
 import space.eliseev.keycloakadmin.mapper.EventMapper;
 import space.eliseev.keycloakadmin.repository.EventRepository;
 
@@ -27,8 +26,53 @@ public class EventServiceImpl implements EventService {
     private final RealmService realmService;
     private final ClientService clientService;
 
-    public EventDto eventMapping(Event event) {
-        // Изменить после реализации RealmDto mapping
+    @Override
+    public List<EventDto> getAll() {
+        return eventRepository
+                .findAll()
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<EventDto> getById(@NonNull final String id) {
+        Optional<Event> event = eventRepository.findById(id);
+        EventDto toDto = event.map(this::toDto).orElse(null);
+        return Optional.ofNullable(toDto);
+    }
+
+    @Override
+    public List<EventDto> getAllByUserId(@NonNull String userId) {
+        return eventRepository
+                .findAllByUserId(userId)
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EventDto> getByDateCreatedBetween(@NonNull LocalDateTime startDate,
+                                                  @NonNull LocalDateTime endDate) {
+        return eventRepository
+                .findByDateCreatedBetween(TimeUtils.toLong(startDate), TimeUtils.toLong(endDate))
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EventDto> getByUserIdAndDateCreatedBetween(@NonNull String userId,
+                                                             @NonNull LocalDateTime startDate,
+                                                             @NonNull LocalDateTime endDate) {
+        return eventRepository
+                .findByUserIdeAndDateCreatedBetween(userId, TimeUtils.toLong(startDate), TimeUtils.toLong(endDate))
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
+    }
+
+    private EventDto toDto(Event event) {
         Optional<RealmDto> realm = realmService.getById(event.getRealmId());
         String realmName = realm.map(RealmDto::getName).orElse(null);
 
@@ -46,70 +90,5 @@ public class EventServiceImpl implements EventService {
         dto.setClientName(clientName);
         dto.setEventTime(time);
         return dto;
-    }
-
-    @Override
-    public List<EventDto> getAll() {
-        return eventRepository
-                .findAll()
-                .stream()
-                .map(this::eventMapping)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public Optional<EventDto> getById(@NonNull final String id) {
-        Optional<Event> event = eventRepository.findById(id);
-        EventDto dto = null;
-        if (event.isPresent()) {
-            // Изменить после реализации RealmDto mapping
-            Optional<RealmDto> realm = realmService.getById(event.get().getRealmId());
-            String realmName = realm.map(RealmDto::getName).orElse(null);
-
-            Optional<UserDto> user = userService.getById(event.get().getUserId());
-            String userName = user.map(UserDto::getUsername).orElse(null);
-
-            Optional<ClientDto> client = clientService.getById(event.get().getClientId());
-            String clientName = client.map(ClientDto::getName).orElse(null);
-
-            LocalDateTime time = TimeUtils.toLocalDateTime(event.get().getEventTime());
-            dto = eventMapper.eventToEventDtO(event.orElse(null));
-
-            dto.setRealmName(realmName);
-            dto.setUserName(userName);
-            dto.setClientName(clientName);
-            dto.setEventTime(time);
-        }
-        return Optional.ofNullable(dto);
-    }
-
-    @Override
-    public List<EventDto> getAllByUserId(@NonNull String userId) {
-        return eventRepository
-                .findAllByUserId(userId)
-                .stream()
-                .map(this::eventMapping)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<EventDto> getByDateCreatedBetween(@NonNull LocalDateTime startDate,
-                                                  @NonNull LocalDateTime endDate) {
-        return eventRepository
-                .findByDateCreatedBetween(TimeUtils.toLong(startDate), TimeUtils.toLong(endDate))
-                .stream()
-                .map(this::eventMapping)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<EventDto> getByUserIdAndDateCreatedBetween(@NonNull String userId,
-                                                             @NonNull LocalDateTime startDate,
-                                                             @NonNull LocalDateTime endDate) {
-        return eventRepository
-                .findByUserIdeAndDateCreatedBetween(userId, TimeUtils.toLong(startDate), TimeUtils.toLong(endDate))
-                .stream()
-                .map(this::eventMapping)
-                .collect(Collectors.toList());
     }
 }
