@@ -19,13 +19,14 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import space.eliseev.keycloakadmin.commons.UserFormBuilderFactory;
 import space.eliseev.keycloakadmin.dto.UserDto;
+import space.eliseev.keycloakadmin.exception.BadFileFormatExeption;
 import space.eliseev.keycloakadmin.service.UserService;
 
 import java.util.List;
@@ -43,6 +44,7 @@ import java.util.Optional;
 public class UserController {
 
     private final UserService userService;
+    private final UserFormBuilderFactory userFormBuilderFactory;
 
     @Operation(summary = "Get all users", description = "It can be used to get list of all users in all realms",
             tags = {"user"})
@@ -71,5 +73,35 @@ public class UserController {
         return user
                 .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @Operation(summary = "Get user list as file", description = "It list of users in file",
+            tags = {"user"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_OCTET_STREAM_VALUE,
+                    schema = @Schema(implementation = UserDto.class)),
+                    description = "Successful operation"),
+            @ApiResponse(responseCode = "404", content = @Content, description = "Format not found")
+    })
+    @GetMapping(value = "/save/{format}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public ResponseEntity<byte[]> saveInCsv(@PathVariable String format) {
+        HttpHeaders headers = new HttpHeaders();
+        switch (format) {
+            case "XLSX":
+                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=userlist.xlsx");
+                break;
+            case "CSV":
+                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=userlist.csv");
+                break;
+            default:
+                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=userlist");
+        }
+        return new ResponseEntity<>(userFormBuilderFactory.download(userService.getAllUsers(), format),
+                headers, HttpStatus.OK);
+    }
+
+    @ExceptionHandler({BadFileFormatExeption.class, IllegalArgumentException.class})
+    public ResponseEntity getBadFileFormatExeption(Exception e) {
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 }
