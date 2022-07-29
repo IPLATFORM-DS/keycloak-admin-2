@@ -22,8 +22,9 @@ import java.util.stream.Collectors;
 public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepository;
     private final RoleMapper roleMapper;
-    private final ClientService clientService;
     private final RealmService realmService;
+
+    private final ClientService clientService;
 
     /**
      * Получить список всех ролей
@@ -46,8 +47,7 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public Optional<RoleDto> getById(@NonNull final String id) {
-        return Optional.ofNullable(toDto(roleRepository.findById(id)
-                .orElse(null)));
+        return Optional.of(toDto(roleRepository.getReferenceById(id)));
     }
 
     /**
