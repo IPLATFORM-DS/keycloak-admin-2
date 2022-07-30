@@ -75,6 +75,38 @@ public class UserController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @Operation(summary = "Get user by Username", description = "It returns one user with specified username",
+            tags = {"user"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json",
+                    array = @ArraySchema(schema = @Schema(implementation = UserDto.class))),
+                    description = "Successful operation (List may be empty)"),
+            @ApiResponse(responseCode = "404", content = @Content, description = "User not found")
+    })
+    @GetMapping("/get/username")
+    public ResponseEntity<UserDto> getUserByUsername(@RequestParam String username) {
+        final Optional<UserDto> user = userService.getByUsername(username);
+        return user
+                .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @Operation(summary = "Get user by email", description = "It returns one user with specified email",
+            tags = {"user"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json",
+                    array = @ArraySchema(schema = @Schema(implementation = UserDto.class))),
+                    description = "Successful operation (List may be empty)"),
+            @ApiResponse(responseCode = "404", content = @Content, description = "User not found")
+    })
+    @GetMapping("/get/email")
+    public ResponseEntity<UserDto> getUserByEmail(@RequestParam String email) {
+        final Optional<UserDto> user = userService.getByEmail(email);
+        return user
+                .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
     @Operation(summary = "Get user list as file", description = "It list of users in file",
             tags = {"user"})
     @ApiResponses(value = {
