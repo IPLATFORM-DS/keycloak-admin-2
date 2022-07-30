@@ -11,6 +11,9 @@ spring:
       ddl-auto: validate
   liquibase:
     enabled: false
+  mvc:
+    format:
+      date-time: iso
 springdoc:
   api-docs:
     enabled: true

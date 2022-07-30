@@ -73,7 +73,7 @@ public class EventController {
     }
 
     @Operation(summary = "Get all events in specific time frames",
-            description = "It can be used to get the list of all events in specific time frames in all realms",
+            description = "It can be used to get the list of all events in specific time frames in all realms. Input date format: `yyyy-MM-dd HH:mm` like `2022-02-08T12:41:29`",
             tags = {"event"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json",
@@ -86,7 +86,7 @@ public class EventController {
     }
 
     @Operation(summary = "Get all events in specific time frames for a specific user",
-            description = "It can be used to get the list of all events in specific time frames for a specific user in all realms",
+            description = "It can be used to get the list of all events in specific time frames for a specific user in all realms. Input date format: `yyyy-MM-dd HH:mm` like `2022-02-08T12:41:29`",
             tags = {"event"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json",
