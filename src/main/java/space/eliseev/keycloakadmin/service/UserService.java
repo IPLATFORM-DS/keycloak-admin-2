@@ -39,7 +39,7 @@ public interface UserService {
     Optional<UserDto> getById(@NonNull String id);
 
     /**
-     * Получить пользователя по полю username
+     * Получить пользователя по username
      * @param username имя пользователя
      * @return пользователя
      */
