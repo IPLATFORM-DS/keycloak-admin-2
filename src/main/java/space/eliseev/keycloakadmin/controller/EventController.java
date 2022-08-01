@@ -8,11 +8,15 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import space.eliseev.keycloakadmin.commons.EventFormBuilderFactory;
 import space.eliseev.keycloakadmin.dto.EventDto;
 import space.eliseev.keycloakadmin.dto.UserDto;
+import space.eliseev.keycloakadmin.exception.BadFileFormatExeption;
 import space.eliseev.keycloakadmin.service.EventService;
 import space.eliseev.keycloakadmin.service.UserService;
 
@@ -27,6 +31,7 @@ import java.util.Optional;
 public class EventController {
     private final EventService eventService;
     private final UserService userService;
+    private final EventFormBuilderFactory eventFormBuilderFactory;
 
     @Operation(summary = "Get all events", description = "It can be used to get the list of all events in all realms",
             tags = {"event"})
@@ -100,5 +105,35 @@ public class EventController {
         final Optional<UserDto> user = userService.getByUsername(username);
         String userId = user.map(UserDto::getId).orElse(null);
         return new ResponseEntity<>(eventService.getByUserIdAndDateCreatedBetween(userId, startDate, endDate), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Get event list as file", description = "The list of events in file",
+            tags = {"event"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_OCTET_STREAM_VALUE,
+                    schema = @Schema(implementation = EventDto.class)),
+                    description = "Successful operation"),
+            @ApiResponse(responseCode = "404", content = @Content, description = "Format not found")
+    })
+    @GetMapping(value = "/save/{format}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public ResponseEntity<byte[]> saveInCsv(@PathVariable String format) {
+        HttpHeaders headers = new HttpHeaders();
+        switch (format) {
+            case "XLSX":
+                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=events.xlsx");
+                break;
+            case "CSV":
+                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=events.csv");
+                break;
+            default:
+                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=events");
+        }
+        return new ResponseEntity<>(eventFormBuilderFactory.download(eventService.getAll(), format),
+                headers, HttpStatus.OK);
+    }
+
+    @ExceptionHandler({BadFileFormatExeption.class, IllegalArgumentException.class})
+    public ResponseEntity<Object> getBadFileFormatException(Exception e) {
+        return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
     }
 }
