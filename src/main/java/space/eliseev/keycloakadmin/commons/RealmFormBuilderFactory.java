@@ -19,43 +19,6 @@ public class RealmFormBuilderFactory {
     private final RealmFormBuilderCsv realmFormBuilderCsv;
     private final RealmFormBuilderXlsx realmFormBuilderXlsx;
     private final Map<FileType, Supplier<RealmFormBuilder>> map = new EnumMap<>(FileType.class);
-    private final String[] headers = new String[]{
-            "Access Code Lifespan",
-            "User Action Lifespan",
-            "Access Token Lifespan",
-            "Enabled",
-            "Events Enabled",
-            "Name",
-            "Not Before",
-            "Registration Allowed",
-            "Remember Me",
-            "Reset Password Allowed",
-            "Social",
-            "SSL Required",
-            "Sso Idle Timeout",
-            "Sso Max Lifespan",
-            "Update Profile On Soc Login",
-            "Verify Email",
-            "Login Lifespan",
-            "Internationalization Enabled",
-            "Reg Email As Username",
-            "Admin Events Enabled",
-            "Admin Events Details Enabled",
-            "Edit Username Allowed",
-            "Otp Policy Counter",
-            "Otp Policy Window",
-            "Otp Policy Period",
-            "Otp Policy Digits",
-            "Offline Session Idle Timeout",
-            "Revoke Refresh Token",
-            "Access Token Life Implicit",
-            "Login With Email Allowed",
-            "Duplicate Emails Allowed",
-            "Refresh Token Max Reuse",
-            "Allow User Managed Access",
-            "Sso Max Lifespan Remember Me",
-            "Sso Idle Timeout Remember Me"
-    };
 
     public byte[] download(List<RealmDto> data, String fileType) {
         FileType type;
