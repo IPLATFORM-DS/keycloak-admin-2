@@ -83,17 +83,17 @@ public class ClientController {
     @GetMapping(value = "/save/{format}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     ResponseEntity<byte[]> saveInCsvOrXlsx(@PathVariable String format) {
         HttpHeaders headers = new HttpHeaders();
-        switch (format) {
-            case "XLSX":
+        switch (format.toLowerCase()) {
+            case "xlsx":
                 headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=clientlist.xlsx");
                 break;
-            case "CSV":
+            case "csv":
                 headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=clientlist.csv");
                 break;
             default:
                 headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=clientlist");
         }
-        return new ResponseEntity<>(clientFormBuilderFactory.download(format, clientService.getAllClients()),
+        return new ResponseEntity<>(clientFormBuilderFactory.download(format.toLowerCase(), clientService.getAllClients()),
                 headers, HttpStatus.OK);
     }
 

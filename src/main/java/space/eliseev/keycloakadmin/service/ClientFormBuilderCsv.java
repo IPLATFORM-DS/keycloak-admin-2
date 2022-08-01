@@ -24,12 +24,12 @@ public class ClientFormBuilderCsv implements ClientFormBuilder {
 
         try (StringWriter writer = new StringWriter()) {
 
-            String headers = "enabled, clientId, publicClient, secret, realmName, " +
-                    "protocol, name, clientAuthenticatorType, description,\n";
+            String headers = "enabled;clientId;publicClient;secret;realmName;" +
+                    "protocol;name;clientAuthenticatorType;description;\n";
             writer.append(headers);
 
             StatefulBeanToCsvBuilder<ClientDto> builder = new StatefulBeanToCsvBuilder<>(writer);
-            StatefulBeanToCsv<ClientDto> beanToCsv = builder.withApplyQuotesToAll(false).build();
+            StatefulBeanToCsv<ClientDto> beanToCsv = builder.withSeparator(';').withApplyQuotesToAll(false).build();
             beanToCsv.write(list);
             result = writer.toString().getBytes();
 
