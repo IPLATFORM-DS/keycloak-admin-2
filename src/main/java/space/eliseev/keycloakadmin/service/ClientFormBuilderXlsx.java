@@ -21,31 +21,29 @@ public class ClientFormBuilderXlsx implements ClientFormBuilder {
         byte[] result;
         try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream bos = new ByteArrayOutputStream()){
             int countRow = 0;
-            int countColumn = 0;
             Sheet sheet = workbook.createSheet("All Client List");
             Row row = sheet.createRow(countRow++);
-            row.createCell(countColumn++).setCellValue("enabled");
-            row.createCell(countColumn++).setCellValue("clientId");
-            row.createCell(countColumn++).setCellValue("publicClient");
-            row.createCell(countColumn++).setCellValue("secret");
-            row.createCell(countColumn++).setCellValue("realmName");
-            row.createCell(countColumn++).setCellValue("protocol");
-            row.createCell(countColumn++).setCellValue("name");
-            row.createCell(countColumn++).setCellValue("clientAuthenticatorType");
-            row.createCell(countColumn).setCellValue("description");
+            row.createCell(0).setCellValue("enabled");
+            row.createCell(1).setCellValue("clientId");
+            row.createCell(2).setCellValue("publicClient");
+            row.createCell(3).setCellValue("secret");
+            row.createCell(4).setCellValue("realmName");
+            row.createCell(5).setCellValue("protocol");
+            row.createCell(6).setCellValue("name");
+            row.createCell(7).setCellValue("clientAuthenticatorType");
+            row.createCell(8).setCellValue("description");
 
             for(ClientDto clientDto: list) {
-                countColumn = 0;
                 row = sheet.createRow(countRow++);
-                row.createCell(countColumn++).setCellValue(clientDto.getEnabled());
-                row.createCell(countColumn++).setCellValue(clientDto.getClientId());
-                row.createCell(countColumn++).setCellValue(clientDto.getPublicClient());
-                row.createCell(countColumn++).setCellValue(clientDto.getSecret());
-                row.createCell(countColumn++).setCellValue(clientDto.getRealmName());
-                row.createCell(countColumn++).setCellValue(clientDto.getProtocol());
-                row.createCell(countColumn++).setCellValue(clientDto.getName());
-                row.createCell(countColumn++).setCellValue(clientDto.getClientAuthenticatorType());
-                row.createCell(countColumn).setCellValue(clientDto.getDescription());
+                row.createCell(0).setCellValue(clientDto.getEnabled());
+                row.createCell(1).setCellValue(clientDto.getClientId());
+                row.createCell(2).setCellValue(clientDto.getPublicClient());
+                row.createCell(3).setCellValue(clientDto.getSecret());
+                row.createCell(4).setCellValue(clientDto.getRealmName());
+                row.createCell(5).setCellValue(clientDto.getProtocol());
+                row.createCell(6).setCellValue(clientDto.getName());
+                row.createCell(7).setCellValue(clientDto.getClientAuthenticatorType());
+                row.createCell(8).setCellValue(clientDto.getDescription());
             }
 
             workbook.write(bos);
