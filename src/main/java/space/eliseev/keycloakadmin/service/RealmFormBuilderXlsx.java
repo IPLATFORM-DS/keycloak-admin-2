@@ -51,44 +51,4 @@ public class RealmFormBuilderXlsx implements RealmFormBuilder {
         }
         return result;
     }
-
-    private String[] getRow(RealmDto dto) {
-        return new String[]{
-                dto.getAccessCodeLifespan().toString(),
-                dto.getUserActionLifespan().toString(),
-                dto.getAccessTokenLifespan().toString(),
-                dto.getEnabled().toString(),
-                dto.getEventsEnabled().toString(),
-                dto.getName(),
-                dto.getNotBefore().toString(),
-                dto.getRegistrationAllowed().toString(),
-                dto.getRememberMe().toString(),
-                dto.getResetPasswordAllowed().toString(),
-                dto.getSocial().toString(),
-                dto.getSslRequired(),
-                dto.getSsoIdleTimeout().toString(),
-                dto.getSsoMaxLifespan().toString(),
-                dto.getUpdateProfileOnSocLogin().toString(),
-                dto.getVerifyEmail().toString(),
-                dto.getLoginLifespan().toString(),
-                dto.getInternationalizationEnabled().toString(),
-                dto.getRegEmailAsUsername().toString(),
-                dto.getAdminEventsEnabled().toString(),
-                dto.getAdminEventsDetailsEnabled().toString(),
-                dto.getEditUsernameAllowed().toString(),
-                dto.getOtpPolicyCounter().toString(),
-                dto.getOtpPolicyWindow().toString(),
-                dto.getOtpPolicyPeriod().toString(),
-                dto.getOtpPolicyDigits().toString(),
-                dto.getOfflineSessionIdleTimeout().toString(),
-                dto.getRevokeRefreshToken().toString(),
-                dto.getAccessTokenLifeImplicit().toString(),
-                dto.getLoginWithEmailAllowed().toString(),
-                dto.getDuplicateEmailsAllowed().toString(),
-                dto.getRefreshTokenMaxReuse().toString(),
-                dto.getAllowUserManagedAccess().toString(),
-                dto.getSsoMaxLifespanRememberMe().toString(),
-                dto.getSsoIdleTimeoutRememberMe().toString()
-        };
-    }
 }
