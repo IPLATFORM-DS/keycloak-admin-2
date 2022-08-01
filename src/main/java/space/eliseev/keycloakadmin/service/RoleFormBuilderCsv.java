@@ -25,7 +25,7 @@ public class RoleFormBuilderCsv implements RoleFormBuilder {
         try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
              CSVWriter writer = new CSVWriter(new OutputStreamWriter(bos), ';', '"', '\\', "\n")) {
             List<String[]> csv = new ArrayList<>();
-            String[] headers = "Name;Client has Role;Description;Client Name;Role Name".split(";");
+            String[] headers = "Role Name;Client has Role;Description;Client Name;Realm Name".split(";");
             csv.add(headers);
             for (RoleDto dto : dtos) {
                 String[] row = new String[]{
