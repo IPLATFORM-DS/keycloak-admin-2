@@ -9,13 +9,14 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import space.eliseev.keycloakadmin.commons.RoleFormBuilderFactory;
 import space.eliseev.keycloakadmin.dto.RoleDto;
+import space.eliseev.keycloakadmin.exception.BadFileFormatExeption;
 import space.eliseev.keycloakadmin.service.RoleService;
 
 import java.util.List;
@@ -30,6 +31,7 @@ import java.util.Optional;
 @Tag(name = "role", description = "The Role API")
 public class RoleController {
     private final RoleService roleService;
+    private final RoleFormBuilderFactory roleFormBuilderFactory;
 
     @Operation(summary = "Get all roles", description = "It can be used to get list of all roles in all realms",
             tags = {"role"})
@@ -70,5 +72,35 @@ public class RoleController {
             description = "Name of requested role (or roles, if they exists in different realms)")
                                                        @PathVariable(name = "name") String name) {
         return new ResponseEntity<>(roleService.getByName(name), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Get role list as file", description = "It list of roles in file",
+            tags = {"role"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_OCTET_STREAM_VALUE,
+                    schema = @Schema(implementation = RoleDto.class)),
+                    description = "Successful operation"),
+            @ApiResponse(responseCode = "404", content = @Content, description = "Format not found")
+    })
+    @GetMapping(value = "/save/{format}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public ResponseEntity<byte[]> saveInCsv(@PathVariable String format) {
+        HttpHeaders headers = new HttpHeaders();
+        switch (format) {
+            case "XLSX":
+                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=rolelist.xlsx");
+                break;
+            case "CSV":
+                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=rolelist.csv");
+                break;
+            default:
+                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=rolelist");
+        }
+        return new ResponseEntity<>(roleFormBuilderFactory.download(roleService.getAllRoles(), format),
+                headers, HttpStatus.OK);
+    }
+
+    @ExceptionHandler({BadFileFormatExeption.class, IllegalArgumentException.class})
+    public ResponseEntity<Void> getBadFileFormatExeption(Exception e) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
