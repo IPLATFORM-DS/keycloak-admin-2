@@ -9,13 +9,14 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import space.eliseev.keycloakadmin.commons.ClientFormBuilderFactory;
 import space.eliseev.keycloakadmin.dto.ClientDto;
+import space.eliseev.keycloakadmin.exception.BadFileFormatExeption;
 import space.eliseev.keycloakadmin.service.ClientServiceImpl;
 
 import java.util.List;
@@ -28,6 +29,7 @@ import java.util.Optional;
 public class ClientController {
 
     private final ClientServiceImpl clientService;
+    private final ClientFormBuilderFactory clientFormBuilderFactory;
     @Operation(summary = "Get all clients", description = "It can be used to get list of all clients in all realms")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json",
@@ -70,6 +72,34 @@ public class ClientController {
                 .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    @Operation(summary = "Get client list as file", description = "It list of clients in file",
+            tags = {"client"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_OCTET_STREAM_VALUE,
+                    schema = @Schema(implementation = ClientDto.class)),
+                    description = "Successful operation"),
+            @ApiResponse(responseCode = "404", content = @Content, description = "Format not found")
+    })
+    @GetMapping(value = "/save/{format}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    ResponseEntity<byte[]> saveInCsvOrXlsx(@PathVariable String format) {
+        HttpHeaders headers = new HttpHeaders();
+        switch (format.toLowerCase()) {
+            case "xlsx":
+                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=clientlist.xlsx");
+                break;
+            case "csv":
+                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=clientlist.csv");
+                break;
+            default:
+                headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=clientlist");
+        }
+        return new ResponseEntity<>(clientFormBuilderFactory.download(format.toLowerCase(), clientService.getAllClients()),
+                headers, HttpStatus.OK);
+    }
 
+    @ExceptionHandler({BadFileFormatExeption.class, IllegalArgumentException.class})
+    public ResponseEntity<Object> getBadFileFormatExeption(Exception e) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
 }
