@@ -9,6 +9,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+    open-in-view: true
   liquibase:
     enabled: false
   mvc:
@@ -18,5 +19,3 @@ springdoc:
   api-docs:
     enabled: true
     path: /docs
-vaadin:
-  urlMapping: "/ui/*"
