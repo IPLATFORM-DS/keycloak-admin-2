@@ -11,6 +11,6 @@ import space.eliseev.keycloakadmin.entity.Event;
 public interface EventMapper {
     @Mapping(target = "clientName", source = "clientId")
     @Mapping(target = "realmName", source = "realmId")
-    @Mapping(target = "userName", source = "userId")
+    @Mapping(target = "userName", source = "user.username")
     EventDto eventToEventDtO(Event event);
 }

@@ -61,4 +61,6 @@ public class User extends BaseEntity {
 
     @Column(name = "not_before")
     private Integer notBefore;
+
+    transient private Realm realm;
 }

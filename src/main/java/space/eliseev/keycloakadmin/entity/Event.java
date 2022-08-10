@@ -38,4 +38,6 @@ public class Event extends BaseEntity {
     
     @Column(name = "type")
     private String type;
+
+    transient private User user;
 }
