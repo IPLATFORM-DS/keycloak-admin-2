@@ -35,43 +35,27 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final UserRepository userRepository;
-    private final RealmService realmService;
 
     @Override
     public List<UserDto> getAllUsers() {
         return userRepository.findAll()
                 .stream()
-                .map(this::toDto)
+                .map(userMapper::userToUserDto)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Optional<UserDto> getById(@NonNull final String id) {
-        Optional<User> user = userRepository.findById(id);
-        UserDto toDto = user.map(this::toDto).orElse(null);
-        return Optional.ofNullable(toDto);
+        return userRepository.findById(id).map(userMapper::userToUserDto);
     }
     @Override
     public Optional<UserDto> getByUsername(@NonNull String username) {
-        Optional<User> user = userRepository.findByUsername(username);
-        UserDto toDto = user.map(this::toDto).orElse(null);
-        return Optional.ofNullable(toDto);
+        return userRepository.findByUsername(username).map(userMapper::userToUserDto);
     }
 
     @Override
     public Optional<UserDto> getByEmail(@NonNull String email) {
-        Optional<User> user = userRepository.findByEmail(email);
-        UserDto toDto = user.map(this::toDto).orElse(null);
-        return Optional.ofNullable(toDto);
+        return userRepository.findByEmail(email).map(userMapper::userToUserDto);
     }
 
-    private UserDto toDto(User user) {
-        Optional<RealmDto> realm = realmService.getById(user.getRealmId());
-        LocalDateTime time = TimeUtils.toLocalDateTime(user.getCreatedTimestamp());
-        String realmName = realm.map(RealmDto::getName).orElse(null);
-        UserDto dto = userMapper.userToUserDto(user);
-        dto.setRealmName(realmName);
-        dto.setCreatedTimestampLocalDateTime(time);
-        return dto;
-    }
 }
