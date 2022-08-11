@@ -69,7 +69,7 @@ public class EventController {
     })
     @GetMapping(value = "/user/all")
     public ResponseEntity<List<EventDto>> getUserEvents(@RequestParam String username) {
-        return new ResponseEntity<>(eventService.findAllByUsername(username), HttpStatus.OK);
+        return new ResponseEntity<>(eventService.findByUsername(username), HttpStatus.OK);
     }
 
     @Operation(summary = "Get all events in specific time frames",

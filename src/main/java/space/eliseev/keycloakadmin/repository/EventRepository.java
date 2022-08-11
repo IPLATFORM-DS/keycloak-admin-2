@@ -10,14 +10,14 @@ import java.util.List;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event, String> {
-    @Query("from Event where userId = :username")
-    List<Event> findAllByUsername(@Param("username") String username);
+    @Query("from Event where user.username = :username")
+    List<Event> findByUsername(@Param("username") String username);
 
     @Query("from Event where eventTime between :startDate and :endDate")
     List<Event> findByDateCreatedBetween(@Param("startDate") Long startDate,
                                          @Param("endDate") Long endDate);
 
-    @Query("from Event where userId = :username and eventTime between :startDate and :endDate")
+    @Query("from Event where user.username = :username and eventTime between :startDate and :endDate")
     List<Event> findByUserIdeAndDateCreatedBetween(@Param("username") String username,
                                                     @Param("startDate") Long startDate,
                                                     @Param("endDate") Long endDate);

@@ -64,8 +64,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> findAllByUsername(String username) {
-        return eventRepository.findAllByUsername(username)
+    public List<EventDto> findByUsername(String username) {
+        return eventRepository.findByUsername(username)
                 .stream()
                 .map(eventMapper::eventToEventDtO)
                 .collect(Collectors.toList());
@@ -75,8 +75,8 @@ public class EventServiceImpl implements EventService {
         Optional<RealmDto> realm = realmService.getById(event.getRealmId());
         String realmName = realm.map(RealmDto::getName).orElse(null);
 
-        Optional<UserDto> user = userService.getById(event.getUserId());
-        String userName = user.map(UserDto::getUsername).orElse(null);
+//        Optional<UserDto> user = userService.getById(event.getUserId());
+//        String userName = user.map(UserDto::getUsername).orElse(null);
 
         Optional<ClientDto> client = clientService.getById(event.getClientId());
         String clientName = client.map(ClientDto::getName).orElse(null);
@@ -85,7 +85,7 @@ public class EventServiceImpl implements EventService {
         EventDto dto = eventMapper.eventToEventDtO(event);
 
         dto.setRealmName(realmName);
-        dto.setUserName(userName);
+//        dto.setUserName(userName);
         dto.setClientName(clientName);
         dto.setEventTime(time);
         return dto;

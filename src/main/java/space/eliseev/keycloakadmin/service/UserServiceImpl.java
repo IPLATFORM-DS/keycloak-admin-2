@@ -67,11 +67,11 @@ public class UserServiceImpl implements UserService {
     }
 
     private UserDto toDto(User user) {
-        Optional<RealmDto> realm = realmService.getById(user.getRealmId());
+//        Optional<RealmDto> realm = realmService.getById(user.getRealmId());
         LocalDateTime time = TimeUtils.toLocalDateTime(user.getCreatedTimestamp());
-        String realmName = realm.map(RealmDto::getName).orElse(null);
+//        String realmName = realm.map(RealmDto::getName).orElse(null);
         UserDto dto = userMapper.userToUserDto(user);
-        dto.setRealmName(realmName);
+//        dto.setRealmName(realmName);
         dto.setCreatedTimestampLocalDateTime(time);
         return dto;
     }

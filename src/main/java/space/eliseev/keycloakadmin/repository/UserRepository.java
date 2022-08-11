@@ -28,8 +28,6 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, String> {
     List<User> findByUsername(String username);
     Optional<User> findByEmail(String email);
-    @Query("from User where realmId = :realmName")
-    Optional<User> findByRealmName(@Param("realmName") String realmName);
-    @Query("from User where id = :UserId")
-    Optional<User> findByUserId(@Param("UserId") String UserId);
+    @Query("from User where realm.name = :realmName")
+    List<User> findByRealmName(@Param("realmName") String realmName);
 }

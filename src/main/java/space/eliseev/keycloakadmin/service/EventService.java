@@ -7,21 +7,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface EventService {
-    /**
-     * Получить список всех пользователей
-     * @return список событий
-     */
     List<EventDto> getAll();
 
-    /**
-     * Получить событие по идентификатору
-     * @param id идентификатор события
-     * @return событие
-     */
     Optional<EventDto> getById(String id);
+
     List<EventDto> getByDateCreatedBetween(LocalDateTime startDate, LocalDateTime endDate);
 
     List<EventDto> getByUserIdAndDateCreatedBetween(String username, LocalDateTime startDate, LocalDateTime endDate);
 
-    List<EventDto> findAllByUsername(String username);
+    List<EventDto> findByUsername(String username);
 }
