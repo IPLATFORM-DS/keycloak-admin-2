@@ -100,7 +100,7 @@ public class RoleController {
     }
 
     @ExceptionHandler({BadFileFormatExeption.class, IllegalArgumentException.class})
-    public ResponseEntity<Void> getBadFileFormatExeption(Exception e) {
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<Exception> getBadFileFormatException(Exception e) {
+        return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
     }
 }

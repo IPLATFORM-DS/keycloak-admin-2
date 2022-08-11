@@ -14,14 +14,12 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
-
     private final ClientRepository clientRepository;
     private final ClientMapper clientMapper;
 
     @Override
     public List<ClientDto> getAllClients() {
-        return clientRepository
-                .findAll()
+        return clientRepository.findAll()
                 .stream()
                 .map(clientMapper :: clientToClientDto)
                 .collect(Collectors.toList());
@@ -29,14 +27,15 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Optional<ClientDto> getById(@NonNull final String id) {
-        return Optional.ofNullable(clientMapper.clientToClientDto(clientRepository.findById(id)
-                .orElse(null)));
+        return clientRepository.findById(id).map(clientMapper::clientToClientDto);
     }
 
     @Override
-    public Optional<ClientDto> getClientByName(@NonNull final String name) {
-        return Optional.ofNullable(clientMapper.clientToClientDto(clientRepository.findClientByName(name)
-                .orElse(null)));
+    public List<ClientDto> getClientByName(@NonNull final String name) {
+        return clientRepository.findClientByName(name)
+                .stream()
+                .map(clientMapper::clientToClientDto)
+                .collect(Collectors.toList());
     }
 
 

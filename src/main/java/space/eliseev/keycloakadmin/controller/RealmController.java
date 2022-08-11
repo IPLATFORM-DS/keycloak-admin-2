@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import space.eliseev.keycloakadmin.commons.RealmFormBuilderFactory;
 import space.eliseev.keycloakadmin.dto.RealmDto;
-import space.eliseev.keycloakadmin.dto.UserDto;
 import space.eliseev.keycloakadmin.exception.BadFileFormatExeption;
 import space.eliseev.keycloakadmin.service.RealmService;
 
@@ -97,7 +96,7 @@ public class RealmController {
     }
 
     @ExceptionHandler({BadFileFormatExeption.class, IllegalArgumentException.class})
-    public ResponseEntity getBadFileFormatExeption(Exception e) {
-        return new ResponseEntity(HttpStatus.NOT_FOUND);
+    public ResponseEntity<Exception> getBadFileFormatException(Exception e) {
+        return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
     }
 }

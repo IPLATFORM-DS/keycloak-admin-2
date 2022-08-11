@@ -133,7 +133,7 @@ public class EventController {
     }
 
     @ExceptionHandler({BadFileFormatExeption.class, IllegalArgumentException.class})
-    public ResponseEntity<Object> getBadFileFormatException(Exception e) {
+    public ResponseEntity<Exception> getBadFileFormatException(Exception e) {
         return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
     }
 }
