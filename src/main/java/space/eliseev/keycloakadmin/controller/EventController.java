@@ -15,10 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import space.eliseev.keycloakadmin.commons.EventFormBuilderFactory;
 import space.eliseev.keycloakadmin.dto.EventDto;
-import space.eliseev.keycloakadmin.dto.UserDto;
 import space.eliseev.keycloakadmin.exception.BadFileFormatExeption;
 import space.eliseev.keycloakadmin.service.EventService;
-import space.eliseev.keycloakadmin.service.UserService;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,7 +28,6 @@ import java.util.Optional;
 @Tag(name = "event", description = "The Event API")
 public class EventController {
     private final EventService eventService;
-    private final UserService userService;
     private final EventFormBuilderFactory eventFormBuilderFactory;
 
     @Operation(summary = "Get all events", description = "It can be used to get the list of all events in all realms",
@@ -72,9 +69,7 @@ public class EventController {
     })
     @GetMapping(value = "/user/all")
     public ResponseEntity<List<EventDto>> getUserEvents(@RequestParam String username) {
-        final Optional<UserDto> user = userService.getByUsername(username);
-        String userId = user.map(UserDto::getId).orElse(null);
-        return new ResponseEntity<>(eventService.getAllByUserId(userId), HttpStatus.OK);
+        return new ResponseEntity<>(eventService.findAllByUsername(username), HttpStatus.OK);
     }
 
     @Operation(summary = "Get all events in specific time frames",
@@ -102,9 +97,7 @@ public class EventController {
     public ResponseEntity<List<EventDto>> getEventsByUserInTimePeriod(@RequestParam String username,
                                                                       @RequestParam LocalDateTime startDate,
                                                                       @RequestParam LocalDateTime endDate) {
-        final Optional<UserDto> user = userService.getByUsername(username);
-        String userId = user.map(UserDto::getId).orElse(null);
-        return new ResponseEntity<>(eventService.getByUserIdAndDateCreatedBetween(userId, startDate, endDate), HttpStatus.OK);
+        return new ResponseEntity<>(eventService.getByUserIdAndDateCreatedBetween(username, startDate, endDate), HttpStatus.OK);
     }
 
     @Operation(summary = "Get event list as file", description = "The list of events in file",

@@ -52,10 +52,11 @@ public class UserServiceImpl implements UserService {
         return Optional.ofNullable(toDto);
     }
     @Override
-    public Optional<UserDto> getByUsername(@NonNull String username) {
-        Optional<User> user = userRepository.findByUsername(username);
-        UserDto toDto = user.map(this::toDto).orElse(null);
-        return Optional.ofNullable(toDto);
+    public List<UserDto> getByUsername(@NonNull String username) {
+        return userRepository.findByUsername(username)
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
     @Override

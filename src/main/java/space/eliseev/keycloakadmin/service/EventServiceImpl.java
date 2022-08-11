@@ -43,15 +43,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> getAllByUserId(@NonNull String userId) {
-        return eventRepository
-                .findAllByUserId(userId)
-                .stream()
-                .map(this::toDto)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public List<EventDto> getByDateCreatedBetween(@NonNull LocalDateTime startDate,
                                                   @NonNull LocalDateTime endDate) {
         return eventRepository
@@ -62,13 +53,21 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> getByUserIdAndDateCreatedBetween(@NonNull String userId,
+    public List<EventDto> getByUserIdAndDateCreatedBetween(@NonNull String username,
                                                              @NonNull LocalDateTime startDate,
                                                              @NonNull LocalDateTime endDate) {
         return eventRepository
-                .findByUserIdeAndDateCreatedBetween(userId, TimeUtils.toLong(startDate), TimeUtils.toLong(endDate))
+                .findByUserIdeAndDateCreatedBetween(username, TimeUtils.toLong(startDate), TimeUtils.toLong(endDate))
                 .stream()
                 .map(this::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EventDto> findAllByUsername(String username) {
+        return eventRepository.findAllByUsername(username)
+                .stream()
+                .map(eventMapper::eventToEventDtO)
                 .collect(Collectors.toList());
     }
 
