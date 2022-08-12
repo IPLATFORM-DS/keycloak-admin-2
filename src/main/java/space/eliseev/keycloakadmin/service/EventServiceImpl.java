@@ -4,11 +4,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import space.eliseev.keycloakadmin.commons.TimeUtils;
-import space.eliseev.keycloakadmin.dto.ClientDto;
 import space.eliseev.keycloakadmin.dto.EventDto;
-import space.eliseev.keycloakadmin.dto.RealmDto;
-import space.eliseev.keycloakadmin.dto.UserDto;
-import space.eliseev.keycloakadmin.entity.Event;
 import space.eliseev.keycloakadmin.mapper.EventMapper;
 import space.eliseev.keycloakadmin.repository.EventRepository;
 
@@ -38,15 +34,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> getAllByUserId(@NonNull String userId) {
-        return eventRepository
-                .findAllByUserId(userId)
-                .stream()
-                .map(eventMapper::eventToEventDtO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public List<EventDto> getByDateCreatedBetween(@NonNull LocalDateTime startDate,
                                                   @NonNull LocalDateTime endDate) {
         return eventRepository
@@ -57,14 +44,21 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> getByUserIdAndDateCreatedBetween(@NonNull String userId,
+    public List<EventDto> getByUsernameAndDateCreatedBetween(@NonNull String username,
                                                              @NonNull LocalDateTime startDate,
                                                              @NonNull LocalDateTime endDate) {
         return eventRepository
-                .findByUserIdeAndDateCreatedBetween(userId, TimeUtils.toLong(startDate), TimeUtils.toLong(endDate))
+                .findByUsernameAndDateCreatedBetween(username, TimeUtils.toLong(startDate), TimeUtils.toLong(endDate))
                 .stream()
                 .map(eventMapper::eventToEventDtO)
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<EventDto> getAllByUsername(String username) {
+        return eventRepository.findAllByUsername(username)
+                .stream()
+                .map(eventMapper::eventToEventDtO)
+                .collect(Collectors.toList());
+    }
 }
