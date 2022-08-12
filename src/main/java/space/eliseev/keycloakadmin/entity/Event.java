@@ -21,9 +21,6 @@ public class Event extends BaseEntity {
     @Column(name = "session_id")
     private String sessionId;
     
-    @Column(name = "user_id")
-    private String userId;
-    
     @Column(name = "details_json")
     private String detailsJson;
     
@@ -38,4 +35,8 @@ public class Event extends BaseEntity {
     
     @Column(name = "type")
     private String type;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

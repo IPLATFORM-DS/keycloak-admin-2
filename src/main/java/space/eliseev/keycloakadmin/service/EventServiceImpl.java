@@ -22,24 +22,19 @@ import java.util.stream.Collectors;
 public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
     private final EventMapper eventMapper;
-    private final UserService userService;
-    private final RealmService realmService;
-    private final ClientService clientService;
 
     @Override
     public List<EventDto> getAll() {
         return eventRepository
                 .findAll()
                 .stream()
-                .map(this::toDto)
+                .map(eventMapper::eventToEventDtO)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Optional<EventDto> getById(@NonNull final String id) {
-        Optional<Event> event = eventRepository.findById(id);
-        EventDto toDto = event.map(this::toDto).orElse(null);
-        return Optional.ofNullable(toDto);
+        return eventRepository.findById(id).map(eventMapper::eventToEventDtO);
     }
 
     @Override
@@ -47,7 +42,7 @@ public class EventServiceImpl implements EventService {
         return eventRepository
                 .findAllByUserId(userId)
                 .stream()
-                .map(this::toDto)
+                .map(eventMapper::eventToEventDtO)
                 .collect(Collectors.toList());
     }
 
@@ -57,7 +52,7 @@ public class EventServiceImpl implements EventService {
         return eventRepository
                 .findByDateCreatedBetween(TimeUtils.toLong(startDate), TimeUtils.toLong(endDate))
                 .stream()
-                .map(this::toDto)
+                .map(eventMapper::eventToEventDtO)
                 .collect(Collectors.toList());
     }
 
@@ -68,27 +63,8 @@ public class EventServiceImpl implements EventService {
         return eventRepository
                 .findByUserIdeAndDateCreatedBetween(userId, TimeUtils.toLong(startDate), TimeUtils.toLong(endDate))
                 .stream()
-                .map(this::toDto)
+                .map(eventMapper::eventToEventDtO)
                 .collect(Collectors.toList());
     }
 
-    private EventDto toDto(Event event) {
-        Optional<RealmDto> realm = realmService.getById(event.getRealmId());
-        String realmName = realm.map(RealmDto::getName).orElse(null);
-
-        Optional<UserDto> user = userService.getById(event.getUserId());
-        String userName = user.map(UserDto::getUsername).orElse(null);
-
-        Optional<ClientDto> client = clientService.getById(event.getClientId());
-        String clientName = client.map(ClientDto::getName).orElse(null);
-
-        LocalDateTime time = TimeUtils.toLocalDateTime(event.getEventTime());
-        EventDto dto = eventMapper.eventToEventDtO(event);
-
-        dto.setRealmName(realmName);
-        dto.setUserName(userName);
-        dto.setClientName(clientName);
-        dto.setEventTime(time);
-        return dto;
-    }
 }
