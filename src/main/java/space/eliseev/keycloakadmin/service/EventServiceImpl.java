@@ -43,15 +43,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> getAllByUserId(@NonNull String userId) {
-        return eventRepository
-                .findAllByUserId(userId)
-                .stream()
-                .map(this::toDto)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public List<EventDto> getByDateCreatedBetween(@NonNull LocalDateTime startDate,
                                                   @NonNull LocalDateTime endDate) {
         return eventRepository
@@ -62,13 +53,21 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> getByUserIdAndDateCreatedBetween(@NonNull String userId,
+    public List<EventDto> getByUserIdAndDateCreatedBetween(@NonNull String username,
                                                              @NonNull LocalDateTime startDate,
                                                              @NonNull LocalDateTime endDate) {
         return eventRepository
-                .findByUserIdeAndDateCreatedBetween(userId, TimeUtils.toLong(startDate), TimeUtils.toLong(endDate))
+                .findByUserIdeAndDateCreatedBetween(username, TimeUtils.toLong(startDate), TimeUtils.toLong(endDate))
                 .stream()
                 .map(this::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EventDto> findByUsername(String username) {
+        return eventRepository.findByUsername(username)
+                .stream()
+                .map(eventMapper::eventToEventDtO)
                 .collect(Collectors.toList());
     }
 
@@ -76,8 +75,8 @@ public class EventServiceImpl implements EventService {
         Optional<RealmDto> realm = realmService.getById(event.getRealmId());
         String realmName = realm.map(RealmDto::getName).orElse(null);
 
-        Optional<UserDto> user = userService.getById(event.getUserId());
-        String userName = user.map(UserDto::getUsername).orElse(null);
+//        Optional<UserDto> user = userService.getById(event.getUserId());
+//        String userName = user.map(UserDto::getUsername).orElse(null);
 
         Optional<ClientDto> client = clientService.getById(event.getClientId());
         String clientName = client.map(ClientDto::getName).orElse(null);
@@ -86,7 +85,7 @@ public class EventServiceImpl implements EventService {
         EventDto dto = eventMapper.eventToEventDtO(event);
 
         dto.setRealmName(realmName);
-        dto.setUserName(userName);
+//        dto.setUserName(userName);
         dto.setClientName(clientName);
         dto.setEventTime(time);
         return dto;
