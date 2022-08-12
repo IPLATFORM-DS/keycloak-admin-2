@@ -18,5 +18,3 @@ springdoc:
   api-docs:
     enabled: true
     path: /docs
-vaadin:
-  urlMapping: "/ui/*"
