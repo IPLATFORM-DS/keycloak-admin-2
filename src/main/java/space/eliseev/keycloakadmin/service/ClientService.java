@@ -12,6 +12,6 @@ public interface ClientService {
 
     Optional<ClientDto> getById(@NonNull String id);
 
-    Optional<ClientDto> getClientByName(@NonNull String name);
+    List<ClientDto> getClientByName(@NonNull String name);
 
 }

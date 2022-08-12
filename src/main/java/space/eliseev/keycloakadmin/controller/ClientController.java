@@ -61,16 +61,12 @@ public class ClientController {
             tags = {"client"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = ClientDto.class)),
-                    description = "Successful operation"),
-            @ApiResponse(responseCode = "404", content = @Content, description = "User not found")
+                    array = @ArraySchema(schema = @Schema(implementation = ClientDto.class))),
+                    description = "Successful operation (List may be empty)")
     })
     @GetMapping(value = "/getByName/{name}")
-    ResponseEntity<ClientDto> getClientByName(@PathVariable("name") String name) {
-        final Optional<ClientDto> client = clientService.getClientByName(name);
-        return client
-                .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    ResponseEntity<List<ClientDto>> getClientByName(@PathVariable("name") String name) {
+        return new ResponseEntity<>(clientService.getClientByName(name), HttpStatus.OK);
     }
     @Operation(summary = "Get client list as file", description = "It list of clients in file",
             tags = {"client"})
@@ -98,8 +94,8 @@ public class ClientController {
     }
 
     @ExceptionHandler({BadFileFormatExeption.class, IllegalArgumentException.class})
-    public ResponseEntity<Object> getBadFileFormatExeption(Exception e) {
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<Exception> getBadFileFormatException(Exception e) {
+        return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
     }
 
 }
