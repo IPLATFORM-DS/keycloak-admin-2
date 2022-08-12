@@ -12,5 +12,5 @@ public interface EventMapper {
     @Mapping(target = "clientName", source = "clientId")
     @Mapping(target = "realmName", source = "realmId")
     @Mapping(target = "userName", source = "user.username")
-    EventDto eventToEventDtO(Event event);
+    EventDto eventToEventDto(Event event);
 }

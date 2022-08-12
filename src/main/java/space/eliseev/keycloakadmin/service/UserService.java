@@ -22,34 +22,11 @@ import java.util.Optional;
  * @author <a href="mailto:a.s.eliseev@yandex.ru">Aleksandr Eliseev</a>
  */
 public interface UserService {
-
-    /**
-     * Получить список всех пользователей
-     *
-     * @return список всех пользователей
-     */
     List<UserDto> getAllUsers();
 
-    /**
-     * Получить пользователя по идентификатору
-     *
-     * @param id Идентификатор пользователя
-     * @return пользователя
-     */
     Optional<UserDto> getById(@NonNull String id);
 
-    /**
-     * Получить пользователя по username
-     *
-     * @param username имя пользователя
-     * @return пользователя
-     */
     List<UserDto> getByUsername(@NonNull String username);
 
-    /**
-     * Получить пользователя по адресу почты
-     * @param email адрес почты пользователя
-     * @return пользователя
-     */
     Optional<UserDto> getByEmail(@NonNull String email);
 }

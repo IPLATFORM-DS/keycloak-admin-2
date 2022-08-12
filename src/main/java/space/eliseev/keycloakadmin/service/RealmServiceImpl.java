@@ -14,15 +14,9 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class RealmServiceImpl implements RealmService {
-
     private final RealmRepository realmRepository;
     private final RealmMapper realmMapper;
 
-    /**
-     * Получить список всех реалмов
-     *
-     * @return список всех реалмов
-     */
     @Override
     public List<RealmDto> getAllRealms() {
         return realmRepository.findAll()
@@ -31,27 +25,13 @@ public class RealmServiceImpl implements RealmService {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Получить объект реалм по идентификатору
-     *
-     * @param id Идентификатор реалма
-     * @return реалм (или пустой Optional)
-     */
     @Override
     public Optional<RealmDto> getById(@NonNull final String id) {
-        return Optional.ofNullable(realmMapper.realmToRealmDto(realmRepository.findById(id)
-                .orElse(null)));
+        return realmRepository.findById(id).map(realmMapper::realmToRealmDto);
     }
 
-    /**
-     * Получить объект реалм по имени
-     *
-     * @param name - название реалма (поле name)
-     * @return реалм (или пустой Optional)
-     */
     @Override
     public Optional<RealmDto> getByName(@NonNull final String name) {
-        return Optional.ofNullable(realmMapper.realmToRealmDto(realmRepository.findByName(name)
-                .orElse(null)));
+        return realmRepository.findByName(name).map(realmMapper::realmToRealmDto);
     }
 }

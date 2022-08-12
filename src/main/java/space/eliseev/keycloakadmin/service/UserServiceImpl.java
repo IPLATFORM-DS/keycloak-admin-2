@@ -13,14 +13,10 @@ package space.eliseev.keycloakadmin.service;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import space.eliseev.keycloakadmin.commons.TimeUtils;
-import space.eliseev.keycloakadmin.dto.RealmDto;
 import space.eliseev.keycloakadmin.dto.UserDto;
-import space.eliseev.keycloakadmin.entity.User;
 import space.eliseev.keycloakadmin.mapper.UserMapper;
 import space.eliseev.keycloakadmin.repository.UserRepository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -49,8 +45,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).map(userMapper::userToUserDto);
     }
     @Override
-    public Optional<UserDto> getByUsername(@NonNull String username) {
-        return userRepository.findByUsername(username).map(userMapper::userToUserDto);
+    public List<UserDto> getByUsername(@NonNull String username) {
+        return userRepository.findByUsername(username)
+                .stream()
+                .map(userMapper::userToUserDto)
+                .collect(Collectors.toList());
     }
 
     @Override
