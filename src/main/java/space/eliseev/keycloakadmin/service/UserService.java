@@ -50,5 +50,5 @@ public interface UserService {
      * @param email адрес почты пользователя
      * @return пользователя
      */
-    Optional<UserDto> getByEmail(@NonNull String email);
+    List<UserDto> getByEmail(@NonNull String email);
 }

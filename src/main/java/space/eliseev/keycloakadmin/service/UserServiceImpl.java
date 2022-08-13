@@ -59,10 +59,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<UserDto> getByEmail(@NonNull String email) {
-        Optional<User> user = userRepository.findByEmail(email);
-        UserDto toDto = user.map(this::toDto).orElse(null);
-        return Optional.ofNullable(toDto);
+    public List<UserDto> getByEmail(@NonNull String email) {
+        List<UserDto> user = userRepository.findByEmail(email).stream().map(this::toDto).collect(Collectors.toList());
+        return user;
     }
 
     private UserDto toDto(User user) {

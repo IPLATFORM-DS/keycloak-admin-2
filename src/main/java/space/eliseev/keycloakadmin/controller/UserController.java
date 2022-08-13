@@ -100,11 +100,9 @@ public class UserController {
             @ApiResponse(responseCode = "404", content = @Content, description = "User not found")
     })
     @GetMapping("/get/email")
-    public ResponseEntity<UserDto> getUserByEmail(@RequestParam String email) {
-        final Optional<UserDto> user = userService.getByEmail(email);
-        return user
-                .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<List<UserDto>> getUserByEmail(@RequestParam String email) {
+        final List<UserDto> user = userService.getByEmail(email);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @Operation(summary = "Get user list as file", description = "It list of users in file",
