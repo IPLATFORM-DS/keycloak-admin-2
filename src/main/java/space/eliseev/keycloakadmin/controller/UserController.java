@@ -42,7 +42,6 @@ import java.util.Optional;
 @RequestMapping(value = "/user", produces = "application/json; charset=UTF-8")
 @Tag(name = "user", description = "The User API")
 public class UserController {
-
     private final UserService userService;
     private final UserFormBuilderFactory userFormBuilderFactory;
 
@@ -80,15 +79,11 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json",
                     array = @ArraySchema(schema = @Schema(implementation = UserDto.class))),
-                    description = "Successful operation (List may be empty)"),
-            @ApiResponse(responseCode = "404", content = @Content, description = "User not found")
+                    description = "Successful operation (List may be empty)")
     })
     @GetMapping("/get/username")
-    public ResponseEntity<UserDto> getUserByUsername(@RequestParam String username) {
-        final Optional<UserDto> user = userService.getByUsername(username);
-        return user
-                .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<List<UserDto>> getUserByUsername(@RequestParam String username) {
+        return new ResponseEntity<>(userService.getByUsername(username), HttpStatus.OK);
     }
 
     @Operation(summary = "Get user by email", description = "It returns one user with specified email",
