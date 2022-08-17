@@ -53,8 +53,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<UserDto> getByEmail(@NonNull String email) {
-        return userRepository.findByEmail(email).map(userMapper::userToUserDto);
+    public List<UserDto> getByEmail(@NonNull String email) {
+        return userRepository.findByEmail(email).stream().map(userMapper::userToUserDto).collect(Collectors.toList());
     }
 
 }
